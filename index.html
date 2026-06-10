@@ -487,6 +487,96 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
     </div>
 
     <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> FORM_CONTROLS — select, checkbox, radio, switch</span></div>
+      <div class="ex-demo">
+        <select class="term">
+          <option>PULSECHAIN</option><option>BASE</option><option>SONIC</option><option>ETHEREUM</option>
+        </select>
+        <label style="display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:.15em; cursor:pointer">
+          <input type="checkbox" class="term" checked> EXPERT_MODE</label>
+        <label style="display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:.15em; cursor:pointer">
+          <input type="radio" name="r1" class="term" checked> V3</label>
+        <label style="display:inline-flex; align-items:center; gap:8px; font-size:11px; letter-spacing:.15em; cursor:pointer">
+          <input type="radio" name="r1" class="term"> V2</label>
+        <label class="switch"><input type="checkbox" checked><span class="track"></span></label>
+      </div>
+<pre>&lt;select class="<span class="k">term</span>"&gt;…&lt;/select&gt;
+&lt;input type="checkbox" class="<span class="k">term</span>"&gt; / &lt;input type="radio" class="<span class="k">term</span>"&gt;
+&lt;label class="<span class="k">switch</span>"&gt;&lt;input type="checkbox"&gt;&lt;span class="<span class="k">track</span>"&gt;&lt;/span&gt;&lt;/label&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> BADGES — product / chain status</span></div>
+      <div class="ex-demo">
+        <span class="badge">DEFAULT</span>
+        <span class="badge badge-brass">FEATURED</span>
+        <span class="badge badge-live"><span class="dot-blink" style="background:currentColor"></span>LIVE</span>
+        <span class="badge badge-soon">SOON</span>
+        <span class="badge badge-deprecated">LEGACY</span>
+      </div>
+<pre>&lt;span class="<span class="k">badge</span>"&gt; · &lt;span class="<span class="k">badge badge-brass</span>"&gt; · &lt;span class="<span class="k">badge badge-live</span>"&gt;
+&lt;span class="<span class="k">badge badge-soon</span>"&gt; · &lt;span class="<span class="k">badge badge-deprecated</span>"&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> TABS + PAGINATION</span></div>
+      <div class="ex-demo" style="display:block">
+        <div class="tabs" id="tabDemo" style="margin-bottom:18px">
+          <button class="tab active" type="button">SWAP</button>
+          <button class="tab" type="button">LIQUIDITY</button>
+          <button class="tab" type="button">HISTORY</button>
+        </div>
+        <div class="pager">
+          <button class="pager-btn" type="button" disabled>‹</button>
+          <button class="pager-btn active" type="button">1</button>
+          <button class="pager-btn" type="button">2</button>
+          <button class="pager-btn" type="button">3</button>
+          <span style="color:var(--color-fg-subtle); padding:0 4px">…</span>
+          <button class="pager-btn" type="button">12</button>
+          <button class="pager-btn" type="button">›</button>
+        </div>
+      </div>
+<pre>&lt;div class="<span class="k">tabs</span>"&gt;&lt;button class="<span class="k">tab active</span>"&gt;SWAP&lt;/button&gt;&lt;button class="<span class="k">tab</span>"&gt;…&lt;/button&gt;&lt;/div&gt;
+&lt;div class="<span class="k">pager</span>"&gt;&lt;button class="<span class="k">pager-btn active</span>"&gt;1&lt;/button&gt;&lt;button class="<span class="k">pager-btn</span>"&gt;2&lt;/button&gt;…&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> MODAL + TOAST — overlays (z-modal 100 / z-toast 90)</span></div>
+      <div class="ex-demo">
+        <button class="btn-terminal" type="button" id="modalOpen">OPEN_MODAL</button>
+        <button class="btn-ghost" type="button" id="toastSpawn">SPAWN_TOAST</button>
+      </div>
+<pre><span class="c">&lt;!-- modal: backdrop + centered bracket panel (xch compliance pattern) --&gt;</span>
+&lt;div class="<span class="k">modal-backdrop</span>"&gt;&lt;/div&gt;
+&lt;div class="<span class="k">modal-wrap</span>"&gt;&lt;div class="<span class="k">modal-panel bracket-card</span>"&gt;…&lt;/div&gt;&lt;/div&gt;
+
+<span class="c">&lt;!-- toasts: fixed stack top-right, 220ms ease-out entry --&gt;</span>
+&lt;div class="<span class="k">toast-stack</span>"&gt;&lt;div class="<span class="k">toast toast-success</span>"&gt;TX_CONFIRMED&lt;/div&gt;&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> LOADING + EMPTY_STATES</span></div>
+      <div class="ex-demo" style="align-items:stretch">
+        <div style="flex:1; min-width:220px; display:flex; flex-direction:column; gap:10px">
+          <div class="skeleton" style="height:14px; width:60%"></div>
+          <div class="skeleton" style="height:14px; width:85%"></div>
+          <div class="skeleton" style="height:14px; width:40%"></div>
+          <span class="loader-dots">LOADING</span>
+          <div class="progress"><div class="progress-fill" style="width:64%"></div></div>
+        </div>
+        <div class="empty-state" style="flex:1; min-width:220px">
+          <span class="empty-title">// NO_DATA</span>
+          <span class="empty-sub">No positions found for this wallet.</span>
+        </div>
+      </div>
+<pre>&lt;div class="<span class="k">skeleton</span>" style="height:14px"&gt;&lt;/div&gt;       <span class="c">&lt;!-- shimmer placeholder --&gt;</span>
+&lt;span class="<span class="k">loader-dots</span>"&gt;LOADING&lt;/span&gt;              <span class="c">&lt;!-- marching dots --&gt;</span>
+&lt;div class="<span class="k">progress</span>"&gt;&lt;div class="<span class="k">progress-fill</span>" style="width:64%"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class="<span class="k">empty-state</span>"&gt;&lt;span class="<span class="k">empty-title</span>"&gt;// NO_DATA&lt;/span&gt;…&lt;/div&gt;
+<span class="c">&lt;!-- error variant: class="empty-state is-error" --&gt;</span></pre>
+    </div>
+
+    <div class="ex">
       <div class="ex-head"><span class="label"><span class="tick">//</span> ICONS — lucide-react only</span></div>
       <div class="ex-demo" style="display:block">
         <p style="font-family:var(--font-sans); color:var(--color-fg-muted); margin:0">
@@ -751,6 +841,46 @@ font-family: var(<span class="k">--font-mono</span>);
     d.classList.remove('stagger');
     void d.offsetWidth;
     d.classList.add('stagger');
+  });
+
+  // tabs demo
+  document.querySelectorAll('#tabDemo .tab').forEach(t => t.addEventListener('click', () => {
+    document.querySelectorAll('#tabDemo .tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  }));
+
+  // modal demo
+  document.getElementById('modalOpen').addEventListener('click', () => {
+    const backdrop = document.createElement('div');
+    backdrop.className = 'modal-backdrop';
+    const wrap = document.createElement('div');
+    wrap.className = 'modal-wrap';
+    wrap.innerHTML = `<div class="modal-panel bracket-card">
+      <div class="label" style="margin-bottom:12px"><span style="color:var(--color-brass)">//</span> COMPLIANCE_NOTICE</div>
+      <p class="acc-body" style="margin:0 0 20px">This is the canonical modal: ink backdrop at 95% with blur,
+      bracket-card panel on ink-900, max-width 42rem. Click CLOSE or the backdrop to dismiss.</p>
+      <button class="btn-terminal solid" type="button" id="modalClose">ACKNOWLEDGE</button>
+      <button class="btn-ghost" type="button" id="modalClose2">CLOSE</button>
+    </div>`;
+    document.body.append(backdrop, wrap);
+    const close = () => { backdrop.remove(); wrap.remove(); };
+    backdrop.addEventListener('click', close);
+    wrap.addEventListener('click', e => { if (e.target === wrap) close(); });
+    wrap.querySelector('#modalClose').addEventListener('click', close);
+    wrap.querySelector('#modalClose2').addEventListener('click', close);
+  });
+
+  // toast demo
+  let toastStack = null, toastN = 0;
+  const toastKinds = [['toast-success', 'TX_CONFIRMED // 1,337.42 XCH'], ['toast-warn', 'SLIPPAGE_HIGH // 2.4%'], ['toast-danger', 'TX_REVERTED // INSUFFICIENT_FUNDS'], ['', 'SYNC_COMPLETE']];
+  document.getElementById('toastSpawn').addEventListener('click', () => {
+    if (!toastStack) { toastStack = document.createElement('div'); toastStack.className = 'toast-stack'; document.body.append(toastStack); }
+    const [kind, msg] = toastKinds[toastN++ % toastKinds.length];
+    const t = document.createElement('div');
+    t.className = 'toast ' + kind;
+    t.textContent = msg;
+    toastStack.prepend(t);
+    setTimeout(() => t.remove(), 3500);
   });
 </script>
 </body>

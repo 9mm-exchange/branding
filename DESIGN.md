@@ -202,7 +202,66 @@ hardcode hex into an icon.
 
 ---
 
-## 6. Favicons & page metadata
+## 6. Layout & system specs
+
+### Spacing & layout
+
+- **Base unit:** 4px (Tailwind scale). Density is *compact-comfortable* — data UIs
+  (tables, tickers) run tight (`py-2`–`py-3` rows); marketing sections breathe.
+- **Content shell:** centered container, `max-w-6xl`–`max-w-7xl` (1152–1280px),
+  `px-4` mobile / `px-6` desktop.
+- **Section rhythm:** `py-16`–`py-24` (64–96px) between landing sections; section
+  separators are hairlines, not whitespace alone.
+- **Card padding:** `p-5` for interactive cards, `p-7`/`p-8` for content panels.
+- **Corners:** square. `border-radius: 0` everywhere except token/chain avatars
+  (`rounded-full`). No rounded cards or buttons — radius is the fastest way to
+  break the terminal aesthetic.
+
+### Breakpoints
+
+Tailwind defaults — `sm` 640, `md` 768, `lg` 1024, `xl` 1280. Conventions in use:
+nav links hide below `md` (hamburger/launch link instead), sub-product lockup text
+hides below `lg`, table columns drop with `hidden md:table-cell`.
+
+### Z-index scale
+
+Defined as CSS vars in `ui/9mm.css` — keep every layer on this ladder:
+
+| Var | Value | Layer |
+|---|---|---|
+| `--z-noise` | 1 | `.noise::before` |
+| `--z-scanline` | 2 | `.scanline::after` |
+| `--z-sticky` | 10 | sticky table heads, in-panel chrome |
+| `--z-header` | 40 | site header |
+| `--z-tooltip` | 50 | tooltips |
+| `--z-toast` | 90 | toast stack |
+| `--z-modal` | 100 | modal backdrop + panel |
+
+### Motion standard
+
+- **Durations:** 150ms small hovers (borders, text color) · 200–250ms buttons,
+  cards, theme transitions · 220ms toast entry · 700ms reveal/stagger · one-shot
+  1s price flashes. Nothing between 1s and ambient (8s scanline, 50s marquee).
+- **Easing:** `ease` / `ease-out` for micro-interactions; entrances use
+  `cubic-bezier(0.2, 0.8, 0.2, 1)` (the reveal curve).
+- **Policy:** motion is functional or ambient, never decorative-per-element.
+  Entrances stagger once per page load (`.stagger`); state changes flash; the rest
+  is hover feedback. Everything respects `prefers-reduced-motion` (handled
+  globally in `ui/9mm.css`).
+
+### Accessibility
+
+- **Focus:** never remove outlines. `ui/9mm.css` ships a global `:focus-visible`
+  brass ring (1px, 2px offset).
+- **Contrast:** the `text-fg/N` opacity overrides in `ui/9mm.css` exist to keep
+  low-opacity captions at AA — don't bypass them with hardcoded rgba text colors.
+  Brass-on-ink passes AA at ≥12px; don't set brass body text below that.
+- **Semantics:** color is never the only signal — pair `num-up`/`num-down` with
+  ▲/▼, badges with text, status dots with labels.
+- **Motion:** all animation must no-op under `prefers-reduced-motion: reduce`
+  (already covered for every class in `ui/9mm.css`; match that for new ones).
+
+## 7. Favicons & page metadata
 
 Everything needed is in [`favicon/`](favicon/) — copy the image files +
 `site.webmanifest` to your `public/` root and paste `favicon/snippet.html`
@@ -217,7 +276,7 @@ into `<head>`.
 
 ---
 
-## 7. How to consume this pack
+## 8. How to consume this pack
 
 Other projects reference this repo — they don't maintain their own copies of the
 brand CSS. Pull it in as a git submodule (recommended — updates are one

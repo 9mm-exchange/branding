@@ -39,7 +39,7 @@ assets/
 ## Quick start
 
 Reference this repo from your project (git submodule recommended, or a pinned
-vendored copy — see DESIGN.md §7), then:
+vendored copy — see DESIGN.md §8), then:
 
 1. **Tailwind v4 sites:** `@import "<path>/ui/9mm.css";` and
    `@import "<path>/fonts/fonts.css";` after `tailwindcss` — that's the whole brand:
@@ -51,6 +51,14 @@ vendored copy — see DESIGN.md §7), then:
    `public/`, paste `favicon/snippet.html` into `<head>`.
 4. **Logo:** use the SVGs in `logo/svg/` — white on dark, black on light.
 5. **Icons:** lucide-react only — sizes and conventions in DESIGN.md §5.
+
+## Staying in sync
+
+`VERSION` + `CHANGELOG.md` track every design change (semver: MAJOR = breaking
+class/token changes, MINOR = new components, PATCH = value tweaks). Pin the pack
+version in your project's CLAUDE.md and diff against `CHANGELOG.md` when starting
+UI work. Agents: read `CLAUDE.md` in this repo for the full protocol and the
+paste-ready snippet for consuming projects.
 
 ## Notes
 
