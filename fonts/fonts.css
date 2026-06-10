@@ -1,0 +1,91 @@
+/* 9MM Pro — self-hosted brand fonts
+   JetBrains Mono: display, headlines, labels, data
+   Inter: body copy
+   Adjust the url() paths to wherever you serve these files from. */
+
+/* ---- JetBrains Mono ---- */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-300-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-400-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./jetbrains-mono/jetbrains-mono-latin-800-normal.woff2') format('woff2');
+}
+
+/* ---- Inter ---- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./inter/inter-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./inter/inter-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./inter/inter-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./inter/inter-latin-700-normal.woff2') format('woff2');
+}
+
+/* ---- Brand font stacks ---- */
+:root {
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+}

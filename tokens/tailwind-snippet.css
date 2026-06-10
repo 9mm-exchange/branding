@@ -1,0 +1,37 @@
+/* 9MM Pro — Tailwind v4 @theme block.
+   Drop into your globals.css after importing tokens/colors.css.
+   Generates utilities: bg-ink-950, text-fg-muted, text-brass,
+   border-brass-deep, text-warn, text-danger, text-success,
+   font-mono, font-sans, tracking-label, etc.
+
+   ⚠ Never name a color token `--color-base` / `--color-eth` /
+   `--color-chia` — in Tailwind v4, `--color-base` generates a
+   `text-base` utility that collides with the built-in font-size
+   utility. Prefix chain colors instead (e.g. `--color-chain-base`). */
+
+@theme {
+  --color-ink-950: rgb(var(--ink-950-rgb));
+  --color-ink-900: rgb(var(--ink-900-rgb));
+  --color-ink-800: rgb(var(--ink-800-rgb));
+  --color-ink-700: rgb(var(--ink-700-rgb));
+  --color-ink-600: rgb(var(--ink-600-rgb));
+
+  --color-fg:        rgb(var(--fg-rgb));
+  --color-fg-muted:  rgb(var(--fg-muted-rgb));
+  --color-fg-subtle: rgb(var(--fg-subtle-rgb));
+
+  --color-brass:      rgb(var(--brass-rgb));
+  --color-brass-hot:  rgb(var(--brass-hot-rgb));
+  --color-brass-deep: rgb(var(--brass-deep-rgb));
+
+  --color-warn:    rgb(var(--warn-rgb));
+  --color-danger:  rgb(var(--danger-rgb));
+  --color-success: rgb(var(--success-rgb));
+
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --tracking-label:      0.2em;
+  --tracking-label-wide: 0.25em;
+  --tracking-tight2:     -0.03em;
+}

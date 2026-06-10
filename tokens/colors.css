@@ -1,0 +1,82 @@
+/* ──────────────────────────────────────────────────────────────
+   9MM Pro — canonical color tokens
+   Source of truth for all 9mm.pro frontends.
+   Values merged from xch-terminal (fullest system) + landing.
+   RGB triples so Tailwind/utility layers can do rgb(var(--x) / a).
+   ────────────────────────────────────────────────────────────── */
+
+/* ── LIGHT THEME (default :root) — warm parchment ───────────── */
+:root {
+  /* surfaces (darkest token = page background) */
+  --ink-950-rgb: 250 247 239;   /* #faf7ef page background */
+  --ink-900-rgb: 255 255 255;   /* #ffffff card */
+  --ink-800-rgb: 251 247 232;   /* #fbf7e8 popover / input */
+  --ink-700-rgb: 241 235 220;   /* #f1ebdc secondary */
+  --ink-600-rgb: 236 228 208;   /* #ece4d0 muted */
+
+  /* foreground hierarchy */
+  --fg-rgb:        14 11 8;     /* #0e0b08 body text */
+  --fg-muted-rgb:  62 54 46;    /* #3e362e secondary text */
+  --fg-subtle-rgb: 100 92 80;   /* #645c50 captions */
+
+  /* brand accent — brass */
+  --brass-rgb:      138 114 52; /* #8a7234 */
+  --brass-hot-rgb:  168 140 64; /* #a88c40 */
+  --brass-deep-rgb: 92 75 30;   /* #5c4b1e */
+
+  /* semantic */
+  --warn-rgb:    181 137 26;    /* #b5891a */
+  --danger-rgb:  184 68 61;     /* #b8443d */
+  --success-rgb: 22 163 74;     /* #16a34a (green-600 for light bg) */
+
+  /* lines & glow */
+  --hairline:       rgba(138, 114, 52, 0.25);
+  --hairline-brass: rgba(138, 114, 52, 0.55);
+  --shadow-brand:   0 0 40px -10px rgba(138, 114, 52, 0.3);
+}
+
+/* ── DARK THEME (.dark) — near-black ink, bright brass ──────── */
+.dark {
+  --ink-950-rgb: 8 6 11;        /* #08060b page background */
+  --ink-900-rgb: 13 10 18;      /* #0d0a12 card */
+  --ink-800-rgb: 28 24 34;      /* #1c1822 popover / input */
+  --ink-700-rgb: 20 16 24;      /* #141018 secondary */
+  --ink-600-rgb: 36 32 42;      /* #24202a muted */
+
+  --fg-rgb:        255 255 255; /* #ffffff body text */
+  --fg-muted-rgb:  168 162 158; /* #a8a29e secondary text */
+  --fg-subtle-rgb: 118 112 106; /* #76706a captions */
+
+  --brass-rgb:      200 168 78; /* #c8a84e — canonical brand brass */
+  --brass-hot-rgb:  232 196 102;/* #e8c466 */
+  --brass-deep-rgb: 150 124 56; /* #967c38 */
+
+  --warn-rgb:    232 184 74;    /* #e8b84a */
+  --danger-rgb:  224 87 78;     /* #e0574e */
+  --success-rgb: 74 222 128;    /* #4ade80 */
+
+  --hairline:       rgba(255, 255, 255, 0.08);
+  --hairline-brass: rgba(200, 168, 78, 0.35);
+  --shadow-brand:   0 0 40px -10px rgba(200, 168, 78, 0.55);
+}
+
+/* ── Resolved convenience tokens ─────────────────────────────── */
+:root, .dark {
+  --color-ink-950: rgb(var(--ink-950-rgb));
+  --color-ink-900: rgb(var(--ink-900-rgb));
+  --color-ink-800: rgb(var(--ink-800-rgb));
+  --color-ink-700: rgb(var(--ink-700-rgb));
+  --color-ink-600: rgb(var(--ink-600-rgb));
+
+  --color-fg:        rgb(var(--fg-rgb));
+  --color-fg-muted:  rgb(var(--fg-muted-rgb));
+  --color-fg-subtle: rgb(var(--fg-subtle-rgb));
+
+  --color-brass:      rgb(var(--brass-rgb));
+  --color-brass-hot:  rgb(var(--brass-hot-rgb));
+  --color-brass-deep: rgb(var(--brass-deep-rgb));
+
+  --color-warn:    rgb(var(--warn-rgb));
+  --color-danger:  rgb(var(--danger-rgb));
+  --color-success: rgb(var(--success-rgb));
+}
