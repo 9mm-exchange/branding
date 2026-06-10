@@ -49,6 +49,14 @@ SVGs are the masters (auto-traced from the original 559×559 raster — verified
 
 **Rules**
 
+- **Theme-safe artwork.** Any artwork that only exists as white-on-transparent
+  (the original logo PNGs, og-image, partner/protocol marks) disappears on the
+  light theme. When building a screen that renders in both themes, either
+  **swap the variant with the theme** (white mark in dark, black/brass in light —
+  the showcase header does this) or **pin a fixed ink stage behind it**
+  (a `#08060b` chip that doesn't change with the theme — the showcase favicon
+  and protocol demos do this). Never let white-on-transparent artwork sit
+  directly on a theme-driven background.
 - Prefer the white mark on `ink-950`; never place the white mark on light backgrounds.
 - Minimum size: 24px rendered height (the line work closes up below that — at small
   sizes use the favicon assets, which are tuned for 16/32px).

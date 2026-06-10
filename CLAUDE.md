@@ -20,6 +20,11 @@ repo; they do not keep their own copies of brand CSS.
    Never define `--color-base`/`--color-eth`/`--color-chia` in `@theme` —
    `text-base` collides with Tailwind's font-size utility.
 5. Icons: **lucide-react only**. Sizes/conventions in `DESIGN.md` §5.
+6. **Theme-safe artwork:** white-on-transparent images (logo PNGs, og-image,
+   protocol marks) vanish on the light theme. Swap the logo variant with the
+   theme, or pin the image on a fixed `#08060b` ink chip. Rule + examples in
+   `DESIGN.md` §2; live demos in `index.html` (header logo swap, favicon chips).
+   Always verify new UI in BOTH themes before shipping.
 
 ## Rules for changing THIS repo
 
