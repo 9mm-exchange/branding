@@ -60,17 +60,26 @@ SVGs are the masters (auto-traced from the original 559×559 raster — verified
 
 ## 3. Color system
 
-Brass on ink. Dark mode is the brand's home; light mode is a warm parchment scheme.
+Brass on ink. Dark mode is the brand's home; light mode is a softened warm parchment.
 All tokens ship as RGB triples (`--brass-rgb: 200 168 78`) so alpha composition works:
 `rgb(var(--brass-rgb) / 0.35)`.
+
+> **Default scheme policy: every site opens in dark mode.** Light is an explicit,
+> persisted toggle — never the landing default. (Rationale: dark is the brand's
+> home, and "light mode is too bright" feedback traced largely to users dropped
+> into light by default.)
+>
+> **No pure white anywhere.** The light theme was softened in v1.1.0 — the old
+> `#ffffff` card on `#faf7ef` read as glare. The whole light ladder sits ~4%
+> lower with brass deepened one step to hold contrast.
 
 ### Brand accent — brass
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `brass` | `#c8a84e` · `200 168 78` | `#8a7234` · `138 114 52` | Primary accent, CTAs, active states |
-| `brass-hot` | `#e8c466` · `232 196 102` | `#a88c40` · `168 140 64` | Hover, highlights, glows |
-| `brass-deep` | `#967c38` · `150 124 56` | `#5c4b1e` · `92 75 30` | Borders, muted accent |
+| `brass` | `#c8a84e` · `200 168 78` | `#7d672c` · `125 103 44` | Primary accent, CTAs, active states |
+| `brass-hot` | `#e8c466` · `232 196 102` | `#997f38` · `153 127 56` | Hover, highlights, glows |
+| `brass-deep` | `#967c38` · `150 124 56` | `#54431a` · `84 67 26` | Borders, muted accent |
 
 > **Canonical dark brass is `#c8a84e`.** The landing page currently uses `#d7b249`
 > for its dark primary — treat that as legacy drift; new work should use `#c8a84e`.
@@ -79,19 +88,19 @@ All tokens ship as RGB triples (`--brass-rgb: 200 168 78`) so alpha composition 
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `ink-950` | `#08060b` | `#faf7ef` | Page background |
-| `ink-900` | `#0d0a12` | `#ffffff` | Card |
-| `ink-800` | `#1c1822` | `#fbf7e8` | Popover, input |
-| `ink-700` | `#141018` | `#f1ebdc` | Secondary |
-| `ink-600` | `#24202a` | `#ece4d0` | Muted |
+| `ink-950` | `#08060b` | `#f1ebdb` | Page background |
+| `ink-900` | `#0d0a12` | `#f8f4e7` | Card (light: never pure white) |
+| `ink-800` | `#1c1822` | `#ece5d0` | Popover, input |
+| `ink-700` | `#141018` | `#e5dcc4` | Secondary |
+| `ink-600` | `#24202a` | `#ded3b6` | Muted |
 
 ### Foreground hierarchy
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `fg` | `#ffffff` | `#0e0b08` | Body text |
-| `fg-muted` | `#a8a29e` | `#3e362e` | Secondary text |
-| `fg-subtle` | `#76706a` | `#645c50` | Captions, metadata |
+| `fg` | `#ffffff` | `#171208` | Body text |
+| `fg-muted` | `#a8a29e` | `#3a3226` | Secondary text |
+| `fg-subtle` | `#76706a` | `#675d48` | Captions, metadata |
 
 ### Semantic
 
@@ -99,15 +108,15 @@ All tokens ship as RGB triples (`--brass-rgb: 200 168 78`) so alpha composition 
 |---|---|---|---|
 | `warn` | `#e8b84a` | `#b5891a` | Warnings |
 | `danger` | `#e0574e` | `#b8443d` | Errors, price-down |
-| `success` | `#4ade80` | `#16a34a` | Success, price-up |
+| `success` | `#4ade80` | `#157a3d` | Success, price-up |
 
 ### Lines & glow
 
 | Token | Dark | Light |
 |---|---|---|
-| `--hairline` | `rgba(255,255,255,0.08)` | `rgba(138,114,52,0.25)` |
-| `--hairline-brass` | `rgba(200,168,78,0.35)` | `rgba(138,114,52,0.55)` |
-| `--shadow-brand` | `0 0 40px -10px rgba(200,168,78,0.55)` | `0 0 40px -10px rgba(138,114,52,0.3)` |
+| `--hairline` | `rgba(255,255,255,0.08)` | `rgba(125,103,44,0.32)` |
+| `--hairline-brass` | `rgba(200,168,78,0.35)` | `rgba(125,103,44,0.55)` |
+| `--shadow-brand` | `0 0 40px -10px rgba(200,168,78,0.55)` | `0 0 40px -10px rgba(125,103,44,0.3)` |
 
 Chain-brand colors (e.g. Chia green `#3AAC59`) are reserved for chain chips/badges
 only — never as UI accent.

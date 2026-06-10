@@ -5,39 +5,43 @@
    RGB triples so Tailwind/utility layers can do rgb(var(--x) / a).
    ────────────────────────────────────────────────────────────── */
 
-/* ── LIGHT THEME (default :root) — warm parchment ───────────── */
+/* ── LIGHT THEME (default :root) — softened parchment ─────────
+   v1.1.0: whole ladder lowered ~4% and pure white eliminated —
+   the old #ffffff card on #faf7ef read as glare ("too bright"
+   feedback). Brass deepened one step to hold contrast.
+   NOTE: light is the OPT-IN theme — sites default to dark. ── */
 :root {
   /* surfaces (darkest token = page background) */
-  --ink-950-rgb: 250 247 239;   /* #faf7ef page background */
-  --ink-900-rgb: 255 255 255;   /* #ffffff card */
-  --ink-800-rgb: 251 247 232;   /* #fbf7e8 popover / input */
-  --ink-700-rgb: 241 235 220;   /* #f1ebdc secondary */
-  --ink-600-rgb: 236 228 208;   /* #ece4d0 muted */
+  --ink-950-rgb: 241 235 219;   /* #f1ebdb page background */
+  --ink-900-rgb: 248 244 231;   /* #f8f4e7 card (never pure white) */
+  --ink-800-rgb: 236 229 208;   /* #ece5d0 popover / input */
+  --ink-700-rgb: 229 220 196;   /* #e5dcc4 secondary */
+  --ink-600-rgb: 222 211 182;   /* #ded3b6 muted */
 
   /* foreground hierarchy */
-  --fg-rgb:        14 11 8;     /* #0e0b08 body text */
-  --fg-muted-rgb:  62 54 46;    /* #3e362e secondary text */
-  --fg-subtle-rgb: 100 92 80;   /* #645c50 captions */
+  --fg-rgb:        23 18 8;     /* #171208 body text */
+  --fg-muted-rgb:  58 50 38;    /* #3a3226 secondary text */
+  --fg-subtle-rgb: 103 93 72;   /* #675d48 captions */
 
   /* brand accent — brass */
-  --brass-rgb:      138 114 52; /* #8a7234 */
-  --brass-hot-rgb:  168 140 64; /* #a88c40 */
-  --brass-deep-rgb: 92 75 30;   /* #5c4b1e */
+  --brass-rgb:      125 103 44; /* #7d672c */
+  --brass-hot-rgb:  153 127 56; /* #997f38 */
+  --brass-deep-rgb: 84 67 26;   /* #54431a */
 
   /* semantic */
   --warn-rgb:    181 137 26;    /* #b5891a */
   --danger-rgb:  184 68 61;     /* #b8443d */
-  --success-rgb: 22 163 74;     /* #16a34a (green-600 for light bg) */
+  --success-rgb: 21 122 61;     /* #157a3d */
 
   /* lines & glow */
-  --hairline:       rgba(138, 114, 52, 0.25);
-  --hairline-brass: rgba(138, 114, 52, 0.55);
-  --shadow-brand:   0 0 40px -10px rgba(138, 114, 52, 0.3);
+  --hairline:       rgba(125, 103, 44, 0.32);
+  --hairline-brass: rgba(125, 103, 44, 0.55);
+  --shadow-brand:   0 0 40px -10px rgba(125, 103, 44, 0.3);
 
   /* page gradient stops (see .body-gradient in ui/9mm.css) */
-  --body-grad-top:    #f3efe4;
-  --body-grad-bottom: #f6f3ea;
-  --body-glow:        rgba(138, 114, 52, 0.07);
+  --body-grad-top:    #ece5d2;
+  --body-grad-bottom: #efe9d8;
+  --body-glow:        rgba(125, 103, 44, 0.08);
 }
 
 /* ── DARK THEME (.dark) — near-black ink, bright brass ──────── */
