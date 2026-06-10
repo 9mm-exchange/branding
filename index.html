@@ -127,6 +127,10 @@
   .asset-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
   .asset-cell { display: grid; place-items: center; width: 72px; height: 72px; border: 1px solid var(--hairline); }
   .asset-cell img { max-width: 40px; max-height: 40px; }
+  /* white-on-transparent artwork always sits on a fixed ink chip so it
+     stays visible in light mode */
+  .ink-chip { background: #08060b; }
+  img.ink-chip { padding: 5px; }
 
   /* ── code blocks ── */
   pre {
@@ -712,9 +716,9 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
 
     <div class="label pal-label"><span class="tick">//</span> FAVICON_SET</div>
     <div class="icon-row">
-      <div class="icon-cell"><img src="favicon/favicon-16x16.png" width="16" height="16" alt=""><span class="label">16</span></div>
-      <div class="icon-cell"><img src="favicon/favicon-32x32.png" width="32" height="32" alt=""><span class="label">32</span></div>
-      <div class="icon-cell"><img src="favicon/apple-touch-icon.png" width="60" height="60" alt=""><span class="label">APPLE 180</span></div>
+      <div class="icon-cell"><img class="ink-chip" src="favicon/favicon-16x16.png" width="26" height="26" alt=""><span class="label">16</span></div>
+      <div class="icon-cell"><img class="ink-chip" src="favicon/favicon-32x32.png" width="42" height="42" alt=""><span class="label">32</span></div>
+      <div class="icon-cell"><img class="ink-chip" src="favicon/apple-touch-icon.png" width="70" height="70" alt=""><span class="label">APPLE 180</span></div>
       <div class="icon-cell"><img src="favicon/android-chrome-192x192.png" width="96" height="96" alt=""><span class="label">CHROME 192</span></div>
       <div class="icon-cell"><img src="favicon/android-chrome-512x512.png" width="128" height="128" alt=""><span class="label">CHROME 512</span></div>
     </div>
@@ -736,7 +740,8 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
       <div class="asset-cell"><img src="assets/tokens/9mm-base.webp" alt="9MM Base"></div>
       <div class="asset-cell"><img src="assets/tokens/9mm-sonic.gif" alt="9MM Sonic"></div>
       <div class="asset-cell"><img src="assets/tokens/9mm-eth.gif" alt="9MM Ethereum"></div>
-      <div class="asset-cell"><img src="assets/protocols/9x.png" alt="9x aggregator"></div>
+      <div class="asset-cell ink-chip"><img src="assets/protocols/9x.png" alt="9x aggregator"></div>
+      <div class="asset-cell ink-chip"><img src="assets/protocols/nineEx_logo.png" alt="9Ex"></div>
     </div>
   </div>
 </section>
