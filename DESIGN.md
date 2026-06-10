@@ -301,7 +301,7 @@ brand CSS. Pull it in as a git submodule (recommended — updates are one
 record the commit you took it from:
 
 ```bash
-git submodule add https://github.com/<org>/branding.git branding
+git submodule add https://github.com/9mm-exchange/branding.git branding
 ```
 
 **Tailwind v4 projects (the standard path)** — import one file:

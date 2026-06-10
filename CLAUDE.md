@@ -29,8 +29,11 @@ repo; they do not keep their own copies of brand CSS.
 ## Rules for changing THIS repo
 
 - Any change to `ui/9mm.css`, `tokens/`, `fonts/`, or `DESIGN.md`:
-  bump `VERSION` (semver — see CHANGELOG header for the rules) and add a
-  `CHANGELOG.md` entry.
+  bump `VERSION` (semver — see CHANGELOG header for the rules), add a
+  `CHANGELOG.md` entry, and update the version badge at the top of `README.md`.
+- If the showcase's look changes materially, regenerate the README preview
+  images (`docs/preview-dark.png` / `docs/preview-light.png`, 1280×800 viewport
+  screenshots of `index.html` in each theme).
 - New or changed component → add/update its demo + copyable markup in `index.html`,
   and its entry in `DESIGN.md` §5.
 - Verify visually before committing: open `index.html` headlessly, check BOTH themes
@@ -49,8 +52,8 @@ Paste this into each consuming site's CLAUDE.md (adjust the path):
 
 ```markdown
 ## Design System
-The brand source of truth is the branding repo (../branding or the
-9mm-pro/branding GitHub repo). Before any visual/UI work: read its DESIGN.md;
+The brand source of truth is the branding repo (../branding or
+https://github.com/9mm-exchange/branding). Before any visual/UI work: read its DESIGN.md;
 use components from ui/9mm.css (imported in globals.css) — never re-implement
 or locally copy them. This project is synced to branding pack version X.Y.Z —
 when starting UI work, diff that against branding/VERSION and read
