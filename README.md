@@ -1,7 +1,11 @@
 # 9MM Pro — Branding Pack
 
 Canonical brand assets for all 9MM Pro frontends. Read **[DESIGN.md](DESIGN.md)**
-for the full brand guide (logo rules, color system, typography, design language).
+for the full brand guide (logo rules, color system, typography, design language),
+or open **[index.html](index.html)** in a browser for a visual showcase — logo
+variants, live color swatches (click to copy hex), type specimens, and component
+demos, with a dark/light mode toggle. It renders from the pack's own tokens and
+fonts, so it doubles as a smoke test that the pack works.
 
 ## Contents
 
