@@ -10,7 +10,7 @@
 **The single source of truth for the 9MM Pro brand and UI.**
 Tokens, components, fonts, logos, favicons — one repo, every frontend.
 
-[![version](https://img.shields.io/badge/pack-v1.1.0-c8a84e?style=flat-square&labelColor=08060b)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/pack-v1.2.0-c8a84e?style=flat-square&labelColor=08060b)](CHANGELOG.md)
 [![design guide](https://img.shields.io/badge/guide-DESIGN.md-c8a84e?style=flat-square&labelColor=08060b)](DESIGN.md)
 [![live reference](https://img.shields.io/badge/live_reference-index.html-c8a84e?style=flat-square&labelColor=08060b)](index.html)
 
