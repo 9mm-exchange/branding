@@ -60,26 +60,26 @@ SVGs are the masters (auto-traced from the original 559×559 raster — verified
 
 ## 3. Color system
 
-Brass on ink. Dark mode is the brand's home; light mode is a softened warm parchment.
-All tokens ship as RGB triples (`--brass-rgb: 200 168 78`) so alpha composition works:
-`rgb(var(--brass-rgb) / 0.35)`.
+Brass on ink. Dark mode is the brand's home; light mode is **aged paper** — a
+distinctly toned manila, field-manual feel. All tokens ship as RGB triples
+(`--brass-rgb: 200 168 78`) so alpha composition works: `rgb(var(--brass-rgb) / 0.35)`.
 
 > **Default scheme policy: every site opens in dark mode.** Light is an explicit,
 > persisted toggle — never the landing default. (Rationale: dark is the brand's
 > home, and "light mode is too bright" feedback traced largely to users dropped
 > into light by default.)
 >
-> **No pure white anywhere.** The light theme was softened in v1.1.0 — the old
-> `#ffffff` card on `#faf7ef` read as glare. The whole light ladder sits ~4%
-> lower with brass deepened one step to hold contrast.
+> **No pure white anywhere.** The original light theme (`#ffffff` cards on
+> `#faf7ef`) read as glare and was replaced in v1.1.0 with the aged-paper
+> palette below. Don't reintroduce white surfaces.
 
 ### Brand accent — brass
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `brass` | `#c8a84e` · `200 168 78` | `#7d672c` · `125 103 44` | Primary accent, CTAs, active states |
-| `brass-hot` | `#e8c466` · `232 196 102` | `#997f38` · `153 127 56` | Hover, highlights, glows |
-| `brass-deep` | `#967c38` · `150 124 56` | `#54431a` · `84 67 26` | Borders, muted accent |
+| `brass` | `#c8a84e` · `200 168 78` | `#6e5a24` · `110 90 36` | Primary accent, CTAs, active states |
+| `brass-hot` | `#e8c466` · `232 196 102` | `#8a7330` · `138 115 48` | Hover, highlights, glows |
+| `brass-deep` | `#967c38` · `150 124 56` | `#4a3c16` · `74 60 22` | Borders, muted accent |
 
 > **Canonical dark brass is `#c8a84e`.** The landing page currently uses `#d7b249`
 > for its dark primary — treat that as legacy drift; new work should use `#c8a84e`.
@@ -88,35 +88,35 @@ All tokens ship as RGB triples (`--brass-rgb: 200 168 78`) so alpha composition 
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `ink-950` | `#08060b` | `#f1ebdb` | Page background |
-| `ink-900` | `#0d0a12` | `#f8f4e7` | Card (light: never pure white) |
-| `ink-800` | `#1c1822` | `#ece5d0` | Popover, input |
-| `ink-700` | `#141018` | `#e5dcc4` | Secondary |
-| `ink-600` | `#24202a` | `#ded3b6` | Muted |
+| `ink-950` | `#08060b` | `#e7dfc9` | Page background |
+| `ink-900` | `#0d0a12` | `#efe8d4` | Card (light: never pure white) |
+| `ink-800` | `#1c1822` | `#e0d6ba` | Popover, input |
+| `ink-700` | `#141018` | `#d8cca8` | Secondary |
+| `ink-600` | `#24202a` | `#cfc098` | Muted |
 
 ### Foreground hierarchy
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `fg` | `#ffffff` | `#171208` | Body text |
-| `fg-muted` | `#a8a29e` | `#3a3226` | Secondary text |
-| `fg-subtle` | `#76706a` | `#675d48` | Captions, metadata |
+| `fg` | `#ffffff` | `#1c1609` | Body text |
+| `fg-muted` | `#a8a29e` | `#41382a` | Secondary text |
+| `fg-subtle` | `#76706a` | `#6b5f45` | Captions, metadata |
 
 ### Semantic
 
 | Token | Dark | Light | Role |
 |---|---|---|---|
-| `warn` | `#e8b84a` | `#b5891a` | Warnings |
-| `danger` | `#e0574e` | `#b8443d` | Errors, price-down |
-| `success` | `#4ade80` | `#157a3d` | Success, price-up |
+| `warn` | `#e8b84a` | `#a07812` | Warnings |
+| `danger` | `#e0574e` | `#b03e37` | Errors, price-down |
+| `success` | `#4ade80` | `#136f38` | Success, price-up |
 
 ### Lines & glow
 
 | Token | Dark | Light |
 |---|---|---|
-| `--hairline` | `rgba(255,255,255,0.08)` | `rgba(125,103,44,0.32)` |
-| `--hairline-brass` | `rgba(200,168,78,0.35)` | `rgba(125,103,44,0.55)` |
-| `--shadow-brand` | `0 0 40px -10px rgba(200,168,78,0.55)` | `0 0 40px -10px rgba(125,103,44,0.3)` |
+| `--hairline` | `rgba(255,255,255,0.08)` | `rgba(110,90,36,0.38)` |
+| `--hairline-brass` | `rgba(200,168,78,0.35)` | `rgba(110,90,36,0.6)` |
+| `--shadow-brand` | `0 0 40px -10px rgba(200,168,78,0.55)` | `0 0 40px -10px rgba(110,90,36,0.3)` |
 
 Chain-brand colors (e.g. Chia green `#3AAC59`) are reserved for chain chips/badges
 only — never as UI accent.

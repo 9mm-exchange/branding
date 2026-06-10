@@ -11,15 +11,16 @@ or `DESIGN.md` gets an entry here and a version bump:
 
 ## 1.1.0 — 2026-06-10
 
-Light theme softened + default-scheme policy. Prompted by repeated "light mode
-is too bright" user feedback.
+Light theme replaced with **aged paper** + default-scheme policy. Prompted by
+repeated "light mode is too bright" user feedback.
 
-- **Light palette lowered ~4% across the ladder; pure white eliminated.**
+- **Light palette is now aged paper — manila, field-manual tone, no pure white.**
   The old `#ffffff` card on `#faf7ef` read as glare. New surfaces:
-  bg `#f1ebdb`, card `#f8f4e7`, input `#ece5d0`, secondary `#e5dcc4`,
-  muted `#ded3b6`. Light brass deepened one step to hold contrast:
-  `#7d672c` / hot `#997f38` / deep `#54431a`. Light fg warmed (`#171208`),
-  hairlines strengthened (`rgba(125,103,44,0.32)`), light success now `#157a3d`.
+  bg `#e7dfc9`, card `#efe8d4`, input `#e0d6ba`, secondary `#d8cca8`,
+  muted `#cfc098`. Light brass deepened to read rich on the toned paper:
+  `#6e5a24` / hot `#8a7330` / deep `#4a3c16`. Light fg warmed (`#1c1609`),
+  hairlines strengthened (`rgba(110,90,36,0.38)`), light semantics deepened
+  (warn `#a07812`, danger `#b03e37`, success `#136f38`).
   Dark theme unchanged. Token-only change — no markup edits needed in consumers;
   sites pick it up on next sync.
 - **Policy: every site defaults to dark mode.** Light is an explicit, persisted
