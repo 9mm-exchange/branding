@@ -143,8 +143,10 @@ usually `fg-subtle` or brass: `// NON_CUSTODIAL_INTERFACE`.
 
 ## 5. Design language
 
-The shared component vocabulary (reference implementations live in
-`xch-terminal/src/app/globals.css` and `landing/app/globals.css`):
+The shared component vocabulary. **The implementation is [`ui/9mm.css`](ui/9mm.css)** —
+import it; do not copy these rules into a project's globals.css (copy-paste is how the
+sites drifted). If a component needs to change, change it in `ui/9mm.css` and every
+site picks it up on update.
 
 - **Bracket cards** — cards decorated with 14px brass corner brackets
   (`.bracket-card`), brackets brighten/extend on hover.
@@ -156,9 +158,30 @@ The shared component vocabulary (reference implementations live in
   only; disable freely.
 - **Buttons** — `.btn-terminal`: monospace uppercase label, brass hairline border,
   brass glow on hover. `.btn-ghost`: same shape, neutral hairline, no glow.
-- **Motion** — `blink` (1s caret blink), `reveal` (0.7s fade + translate-up, staggered),
-  `marquee` (50s ticker), `flash-up` / `flash-down` (brass / danger glow pulse on
-  price change). All motion must respect `prefers-reduced-motion: reduce`.
+- **Motion** — `blink` (1s caret blink), `reveal` (0.7s fade + translate-up, staggered
+  via `.stagger`), `marquee` (50s ticker), `flash-up` / `flash-down` (brass / danger
+  glow pulse on price change). All motion must respect `prefers-reduced-motion: reduce`
+  (`ui/9mm.css` handles this globally).
+- **Inputs** — `.field` (hairline container, brass focus ring) wrapping `input.term`
+  (transparent, monospace, brass caret).
+- **Tooltip** — `.tooltip-container` + `.tooltip-box`: ink background, brass border,
+  10.5px monospace.
+
+### Icons
+
+**lucide-react is the only icon library.** Do not mix in heroicons, react-icons,
+or inline one-off SVGs for UI glyphs (chain/token marks from `assets/` are the
+exception — they're brand artwork, not icons).
+
+| Context | Size | Notes |
+|---|---|---|
+| Inline with labels / buttons | 14–16px (`h-3.5`/`h-4`) | inherit `currentColor` |
+| Standalone controls (theme toggle, close) | 18–20px | |
+| Token / chain avatars | 28px | usually an `assets/` image, not a lucide glyph |
+
+Default `strokeWidth` (2) for UI glyphs; 1.5 for dense data visuals. Icons take
+their color from the text token of their context (`fg-muted`, `brass`) — never
+hardcode hex into an icon.
 
 ---
 
@@ -179,28 +202,50 @@ into `<head>`.
 
 ## 7. How to consume this pack
 
-**Plain CSS / any stack**
+Other projects reference this repo — they don't maintain their own copies of the
+brand CSS. Pull it in as a git submodule (recommended — updates are one
+`git submodule update --remote` away), or vendor a pinned copy of the folder and
+record the commit you took it from:
+
+```bash
+git submodule add https://github.com/<org>/branding.git branding
+```
+
+**Tailwind v4 projects (the standard path)** — import one file:
+
+```css
+/* globals.css */
+@import "tailwindcss";
+@import "../branding/ui/9mm.css";      /* adjust path to where the repo lives */
+@import "../branding/fonts/fonts.css";
+```
+
+That single `ui/9mm.css` import brings the color tokens, the `@theme` block
+(`bg-ink-950`, `text-brass`, `font-mono`, `tracking-label`, …), base styles, and
+all shared component classes (`.bracket-card`, `.btn-terminal`, `.grid-bg`,
+`.scanline`, `.stagger`, …). **Delete the local copies of those rules from your
+globals.css** — local copies are how the sites drifted. Project-specific styles
+go after the import and should be things this pack doesn't cover.
+
+⚠ Never define `--color-base`, `--color-eth`, or `--color-chia` in `@theme` —
+`text-base` collides with Tailwind's built-in font-size utility. Prefix chain
+colors: `--color-chain-base`.
+
+**Plain CSS / any stack** — `ui/9mm.css` works without Tailwind (browsers skip the
+`@theme` block; the component classes are vanilla CSS). Or go minimal:
 
 ```html
 <link rel="stylesheet" href="/branding/tokens/colors.css">
 <link rel="stylesheet" href="/branding/fonts/fonts.css">
 ```
 
-Then use `var(--color-brass)`, `var(--font-mono)`, etc. Toggle dark mode by adding
-`.dark` to `<html>`.
-
-**Tailwind v4**
-
-Import `tokens/colors.css`, then append the `@theme` block from
-`tokens/tailwind-snippet.css` to your `globals.css`. You get `bg-ink-950`,
-`text-brass`, `border-brass-deep`, `text-fg-muted`, `font-mono`,
-`tracking-label`, etc.
-
-⚠ Never define `--color-base`, `--color-eth`, or `--color-chia` in `@theme` —
-`text-base` collides with Tailwind's built-in font-size utility. Prefix chain
-colors: `--color-chain-base`.
+Toggle dark mode by adding `.dark` to `<html>`.
 
 **Next.js fonts** — either self-host via `fonts/fonts.css`, or keep `next/font/google`
 with the same families/weights. Self-hosting is preferred (no Google dependency).
 
 **Programmatic** — read `tokens/tokens.json` (W3C design-tokens-style format).
+
+**Updating** — bump the submodule (`git submodule update --remote`) or refresh the
+vendored copy to a newer commit. Never fork a component locally; PR the change
+here instead.

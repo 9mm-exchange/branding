@@ -10,6 +10,10 @@ fonts, so it doubles as a smoke test that the pack works.
 ## Contents
 
 ```
+ui/
+  9mm.css       canonical Tailwind v4 UI layer — tokens + @theme + base styles +
+                shared component classes (.bracket-card, .btn-terminal, .grid-bg,
+                .scanline, .stagger, …). Import this; never copy rules locally.
 logo/
   svg/          Vector masters — 9mm mark in white / black / brass
   png/          Original 559px raster + recolored 559px and 1024px renders
@@ -34,12 +38,19 @@ assets/
 
 ## Quick start
 
-1. **Colors + fonts:** copy or import `tokens/colors.css` and `fonts/fonts.css`
-   (plus the `fonts/*/` woff2 folders).
-2. **Tailwind v4:** also paste the `@theme` block from `tokens/tailwind-snippet.css`.
+Reference this repo from your project (git submodule recommended, or a pinned
+vendored copy — see DESIGN.md §7), then:
+
+1. **Tailwind v4 sites:** `@import "<path>/ui/9mm.css";` and
+   `@import "<path>/fonts/fonts.css";` after `tailwindcss` — that's the whole brand:
+   tokens, utilities, and the shared component classes. Delete local copies of
+   `.bracket-card` / `.btn-terminal` / etc. from your globals.css.
+2. **Non-Tailwind pages:** the same two imports work (browsers skip the `@theme`
+   block), or use just `tokens/colors.css` + `fonts/fonts.css` for tokens only.
 3. **Favicons:** copy the image files + `site.webmanifest` from `favicon/` into
    `public/`, paste `favicon/snippet.html` into `<head>`.
 4. **Logo:** use the SVGs in `logo/svg/` — white on dark, black on light.
+5. **Icons:** lucide-react only — sizes and conventions in DESIGN.md §5.
 
 ## Notes
 
