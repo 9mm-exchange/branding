@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9MM.PRO — Brand Pack</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens/colors.css">
+<style>
+  /* ── page chrome (showcase-only styles; tokens come from tokens/colors.css) ── */
+  * { box-sizing: border-box; border-color: var(--hairline); -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+  }
+  /* faint grid */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--hairline) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  /* noise overlay */
+  body::after {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a { color: var(--color-brass); text-decoration: none; }
+  a:hover { color: var(--color-brass-hot); }
+  code, pre { font-family: var(--font-mono); }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* labels */
+  .label {
+    font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--color-fg-subtle);
+  }
+  .label .tick { color: var(--color-brass); }
+
+  /* ── header ── */
+  header {
+    position: sticky; top: 0; z-index: 40;
+    background: rgb(var(--ink-950-rgb) / .85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  header .wrap { display: flex; align-items: center; gap: 14px; height: 56px; }
+  header img { height: 28px; width: 28px; }
+  .lockup { font-weight: 700; font-size: 13px; letter-spacing: .12em; }
+  .lockup .dot { color: var(--color-brass); }
+  .lockup .sub { color: var(--color-fg-subtle); font-weight: 400; }
+  header nav { margin-left: auto; display: flex; gap: 18px; }
+  header nav a { font-size: 10px; letter-spacing: .18em; color: var(--color-fg-muted); }
+  header nav a:hover { color: var(--color-brass); }
+  @media (max-width: 760px) { header nav { display: none; } }
+
+  /* theme toggle */
+  .toggle {
+    margin-left: 18px; cursor: pointer; user-select: none;
+    font: inherit; font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--color-brass); background: transparent;
+    border: 1px solid var(--hairline-brass); padding: 7px 14px;
+    transition: all .2s;
+  }
+  .toggle:hover { box-shadow: var(--shadow-brand); color: var(--color-brass-hot); }
+
+  /* ── hero ── */
+  .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--hairline); }
+  .hero .wrap {
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px;
+    padding-top: 88px; padding-bottom: 88px;
+  }
+  @media (max-width: 760px) { .hero .wrap { grid-template-columns: 1fr; } .hero-mark { order: -1; } }
+  .hero h1 {
+    margin: 18px 0 10px; font-size: clamp(36px, 6vw, 64px); font-weight: 800;
+    letter-spacing: -0.03em; line-height: 1.05;
+  }
+  .hero h1 .dot { color: var(--color-brass); }
+  .tagline { font-family: var(--font-sans); font-size: 16px; color: var(--color-fg-muted); max-width: 46ch; margin: 0 0 28px; }
+  .hero-mark img { width: clamp(160px, 22vw, 260px); filter: drop-shadow(0 0 40px rgb(var(--brass-rgb) / .25)); }
+  /* scanline sweep */
+  .hero::before {
+    content: ''; position: absolute; left: 0; right: 0; height: 140px; pointer-events: none;
+    background: linear-gradient(to bottom, transparent, rgb(var(--brass-rgb) / .045), transparent);
+    animation: scan 8s linear infinite;
+  }
+  @keyframes scan { 0% { top: -140px; } 100% { top: 100%; } }
+  .blink { animation: blink 1s steps(1) infinite; color: var(--color-brass); }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* staggered reveal */
+  .reveal { opacity: 0; animation: reveal .7s cubic-bezier(.2,.7,.3,1) forwards; }
+  @keyframes reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .d1 { animation-delay: .05s } .d2 { animation-delay: .15s } .d3 { animation-delay: .25s } .d4 { animation-delay: .35s }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before, .blink { animation: none; }
+    .reveal { animation: none; opacity: 1; }
+  }
+
+  /* ── sections ── */
+  section { padding: 72px 0; border-bottom: 1px solid var(--hairline); }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 36px; }
+  .sec-head h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: .08em; }
+  .sec-head .idx { color: var(--color-brass); font-size: 11px; letter-spacing: .2em; }
+  .sec-note { font-family: var(--font-sans); color: var(--color-fg-muted); max-width: 64ch; margin: -22px 0 32px; }
+
+  /* bracket card */
+  .bracket-card { position: relative; padding: 24px; border: 1px solid var(--hairline); transition: border-color .2s; }
+  .bracket-card::before, .bracket-card::after {
+    content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid var(--color-brass);
+    transition: all .2s;
+  }
+  .bracket-card::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+  .bracket-card::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+  .bracket-card:hover { border-color: var(--hairline-brass); }
+  .bracket-card:hover::before, .bracket-card:hover::after { width: 22px; height: 22px; border-color: var(--color-brass-hot); }
+
+  /* ── logo section ── */
+  .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .logo-grid { grid-template-columns: 1fr; } }
+  .logo-tile { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--hairline); }
+  .logo-tile .stage { display: grid; place-items: center; height: 220px; }
+  .logo-tile img { height: 132px; }
+  .logo-tile .meta { border-top: 1px solid var(--hairline); padding: 10px 14px; display: flex; justify-content: space-between; gap: 8px; }
+  .logo-tile .meta code { font-size: 10px; color: var(--color-fg-muted); }
+  .stage.on-ink { background: #08060b; }
+  .stage.on-paper { background: #faf7ef; }
+
+  /* ── color swatches ── */
+  .pal-label { margin: 28px 0 12px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .swatch { border: 1px solid var(--hairline); cursor: pointer; transition: border-color .2s; }
+  .swatch:hover { border-color: var(--hairline-brass); }
+  .swatch .chip { height: 72px; border-bottom: 1px solid var(--hairline); }
+  .swatch .info { padding: 8px 10px; }
+  .swatch .nm { font-size: 11px; font-weight: 600; letter-spacing: .06em; }
+  .swatch .hx { font-size: 10px; color: var(--color-fg-subtle); letter-spacing: .06em; }
+  .swatch.copied .hx { color: var(--color-success); }
+
+  /* ── typography ── */
+  .type-row { display: grid; grid-template-columns: 170px 1fr; gap: 18px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--hairline); }
+  .type-row:last-child { border-bottom: 0; }
+  @media (max-width: 600px) { .type-row { grid-template-columns: 1fr; gap: 4px; } }
+  .spec-mono { font-size: 24px; }
+  .spec-sans { font-family: var(--font-sans); font-size: 17px; }
+
+  /* ── design language demos ── */
+  .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .btn-terminal {
+    font: inherit; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer;
+    color: var(--color-brass); background: rgb(var(--brass-rgb) / .06);
+    border: 1px solid var(--hairline-brass); padding: 11px 22px; transition: all .2s;
+  }
+  .btn-terminal:hover { box-shadow: var(--shadow-brand); color: var(--color-brass-hot); background: rgb(var(--brass-rgb) / .12); }
+  .btn-ghost {
+    font: inherit; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer;
+    color: var(--color-fg-muted); background: transparent;
+    border: 1px solid var(--hairline); padding: 11px 22px; transition: all .2s;
+  }
+  .btn-ghost:hover { color: var(--color-fg); border-color: var(--color-fg-subtle); }
+  .ticker { font-size: 12px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .up { color: var(--color-success); } .down { color: var(--color-danger); } .wn { color: var(--color-warn); }
+
+  /* ── favicon / assets ── */
+  .icon-row { display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap; }
+  .icon-cell { text-align: center; }
+  .icon-cell .label { display: block; margin-top: 8px; }
+  .asset-row { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+  .asset-cell { display: grid; place-items: center; width: 72px; height: 72px; border: 1px solid var(--hairline); }
+  .asset-cell img { max-width: 40px; max-height: 40px; }
+
+  /* ── code blocks ── */
+  pre {
+    margin: 0; padding: 18px 20px; overflow-x: auto; font-size: 12px; line-height: 1.7;
+    background: var(--color-ink-900); border: 1px solid var(--hairline);
+  }
+  pre .c { color: var(--color-fg-subtle); } pre .k { color: var(--color-brass); }
+
+  footer { padding: 48px 0 64px; }
+  footer .label { line-height: 2.1; }
+</style>
+</head>
+<body class="grid-bg">
+
+<header>
+  <div class="wrap">
+    <img src="logo/svg/9mm-mark-white.svg" alt="" class="mark-themed">
+    <div class="lockup">9MM<span class="dot">.</span>PRO <span class="sub">/ BRAND_PACK</span></div>
+    <nav>
+      <a href="#logo">LOGO</a>
+      <a href="#color">COLOR</a>
+      <a href="#type">TYPE</a>
+      <a href="#lang">LANGUAGE</a>
+      <a href="#icons">ICONS</a>
+      <a href="#usage">USAGE</a>
+    </nav>
+    <button class="toggle" id="themeToggle" type="button">MODE: DARK</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="label reveal d1"><span class="tick">//</span> MASTER_BRANDING_PACK <span class="blink">▮</span></div>
+      <h1 class="reveal d2">9MM<span class="dot">.</span>PRO</h1>
+      <p class="tagline reveal d3">Decentralized. Efficient. Yours. — the canonical brand reference
+      for every 9MM Pro frontend. This page is rendered entirely from the pack's own tokens,
+      fonts, and logos: if it looks right, the pack works.</p>
+      <div class="reveal d4">
+        <a class="btn-terminal" href="DESIGN.md">READ_DESIGN.MD</a>
+        <a class="btn-ghost" href="https://9mm.pro">9MM.PRO ↗</a>
+      </div>
+    </div>
+    <div class="hero-mark reveal d3">
+      <img src="logo/svg/9mm-mark-brass.svg" alt="9MM mark">
+    </div>
+  </div>
+</div>
+
+<section id="logo">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>LOGO</h2></div>
+    <p class="sec-note">One mark — a heptagon containing a triangle with 9/MM. Three color variants,
+    SVG masters in <code>logo/svg/</code>. White on ink is the primary usage. Minimum render height 24px;
+    clear space ≥ 25% of mark width on all sides.</p>
+    <div class="logo-grid">
+      <div class="logo-tile">
+        <div class="stage on-ink"><img src="logo/svg/9mm-mark-white.svg" alt="white mark on ink"></div>
+        <div class="meta"><code>9mm-mark-white.svg</code><span class="label">ON DARK</span></div>
+      </div>
+      <div class="logo-tile">
+        <div class="stage on-paper"><img src="logo/svg/9mm-mark-black.svg" alt="black mark on parchment"></div>
+        <div class="meta"><code>9mm-mark-black.svg</code><span class="label">ON LIGHT</span></div>
+      </div>
+      <div class="logo-tile">
+        <div class="stage on-ink"><img src="logo/svg/9mm-mark-brass.svg" alt="brass mark on ink"></div>
+        <div class="meta"><code>9mm-mark-brass.svg</code><span class="label">ACCENT</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>COLOR</h2></div>
+    <p class="sec-note">Brass on ink. Values below are computed live from <code>tokens/colors.css</code> —
+    flip the MODE toggle to see the light theme. Click any swatch to copy its hex.</p>
+
+    <div class="label pal-label"><span class="tick">//</span> BRASS — BRAND_ACCENT</div>
+    <div class="swatches">
+      <div class="swatch" data-rgb="--brass-rgb"><div class="chip" style="background:var(--color-brass)"></div><div class="info"><div class="nm">brass</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--brass-hot-rgb"><div class="chip" style="background:var(--color-brass-hot)"></div><div class="info"><div class="nm">brass-hot</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--brass-deep-rgb"><div class="chip" style="background:var(--color-brass-deep)"></div><div class="info"><div class="nm">brass-deep</div><div class="hx"></div></div></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> INK — SURFACES</div>
+    <div class="swatches">
+      <div class="swatch" data-rgb="--ink-950-rgb"><div class="chip" style="background:var(--color-ink-950)"></div><div class="info"><div class="nm">ink-950 · page</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--ink-900-rgb"><div class="chip" style="background:var(--color-ink-900)"></div><div class="info"><div class="nm">ink-900 · card</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--ink-800-rgb"><div class="chip" style="background:var(--color-ink-800)"></div><div class="info"><div class="nm">ink-800 · input</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--ink-700-rgb"><div class="chip" style="background:var(--color-ink-700)"></div><div class="info"><div class="nm">ink-700 · secondary</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--ink-600-rgb"><div class="chip" style="background:var(--color-ink-600)"></div><div class="info"><div class="nm">ink-600 · muted</div><div class="hx"></div></div></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> FOREGROUND</div>
+    <div class="swatches">
+      <div class="swatch" data-rgb="--fg-rgb"><div class="chip" style="background:var(--color-fg)"></div><div class="info"><div class="nm">fg</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--fg-muted-rgb"><div class="chip" style="background:var(--color-fg-muted)"></div><div class="info"><div class="nm">fg-muted</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--fg-subtle-rgb"><div class="chip" style="background:var(--color-fg-subtle)"></div><div class="info"><div class="nm">fg-subtle</div><div class="hx"></div></div></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> SEMANTIC</div>
+    <div class="swatches">
+      <div class="swatch" data-rgb="--success-rgb"><div class="chip" style="background:var(--color-success)"></div><div class="info"><div class="nm">success</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--warn-rgb"><div class="chip" style="background:var(--color-warn)"></div><div class="info"><div class="nm">warn</div><div class="hx"></div></div></div>
+      <div class="swatch" data-rgb="--danger-rgb"><div class="chip" style="background:var(--color-danger)"></div><div class="info"><div class="nm">danger</div><div class="hx"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>TYPOGRAPHY</h2></div>
+    <p class="sec-note">JetBrains Mono carries the brand — display, labels, data. Inter handles body copy.
+    Both self-hosted from <code>fonts/</code> (this page is using them right now).</p>
+
+    <div class="label pal-label"><span class="tick">//</span> JETBRAINS_MONO — DISPLAY / LABELS / DATA</div>
+    <div>
+      <div class="type-row"><span class="label">300 LIGHT</span><span class="spec-mono" style="font-weight:300">Cross-chain price discovery</span></div>
+      <div class="type-row"><span class="label">400 REGULAR</span><span class="spec-mono" style="font-weight:400">0x9a4e…c8a8 · 1,337.42 XCH</span></div>
+      <div class="type-row"><span class="label">600 SEMIBOLD</span><span class="spec-mono" style="font-weight:600">XCH_TERMINAL // ONLINE</span></div>
+      <div class="type-row"><span class="label">800 EXTRABOLD</span><span class="spec-mono" style="font-weight:800; letter-spacing:-0.03em">DECENTRALIZED.</span></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> INTER — BODY</div>
+    <div>
+      <div class="type-row"><span class="label">400 / 17PX</span><span class="spec-sans">9MM Pro is a multi-chain DeFi suite: V2/V3 DEX, the 9x aggregator, XCH Terminal for Chia markets, and revenue-share claims across PulseChain, Base, Sonic, and Ethereum.</span></div>
+      <div class="type-row"><span class="label">600 / 17PX</span><span class="spec-sans" style="font-weight:600">Non-custodial, self-custody execution. No account required.</span></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> TRACKING_TOKENS</div>
+    <div>
+      <div class="type-row"><span class="label">LABEL · 0.2EM</span><span style="letter-spacing:.2em; font-size:12px">SECTION_LABEL_CONVENTION</span></div>
+      <div class="type-row"><span class="label">WIDE · 0.25EM</span><span style="letter-spacing:.25em; font-size:12px; color:var(--color-brass)">HERO_EYEBROW</span></div>
+      <div class="type-row"><span class="label">TIGHT · -0.03EM</span><span style="letter-spacing:-0.03em; font-size:24px; font-weight:800">Display headline</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="lang">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>DESIGN_LANGUAGE</h2></div>
+    <p class="sec-note">Terminal / tactical HUD. Hairlines over shadows, brackets over rounded corners,
+    monospace labels with underscores. Everything below is live — hover the card and buttons.</p>
+    <div class="demo-grid">
+      <div class="bracket-card">
+        <div class="label" style="margin-bottom:10px"><span class="tick">//</span> BRACKET_CARD</div>
+        <p style="font-family:var(--font-sans); color:var(--color-fg-muted); margin:0 0 16px">
+          14px brass corner brackets, extend + brighten on hover. The signature container.</p>
+        <button class="btn-terminal" type="button">BTN_TERMINAL</button>
+        <button class="btn-ghost" type="button">BTN_GHOST</button>
+      </div>
+      <div class="bracket-card">
+        <div class="label" style="margin-bottom:10px"><span class="tick">//</span> DATA_STATES</div>
+        <div class="ticker" style="margin-bottom:14px">
+          <span class="up">▲ 9MM +4.20%</span>
+          <span class="down">▼ wXCH −1.08%</span>
+          <span class="wn">⚠ SLIPPAGE_HIGH</span>
+        </div>
+        <p style="font-family:var(--font-sans); color:var(--color-fg-muted); margin:0">
+          Success for price-up, danger for price-down, warn for caution states.
+          Chain colors stay in chips — never as UI accent.</p>
+      </div>
+      <div class="bracket-card">
+        <div class="label" style="margin-bottom:10px"><span class="tick">//</span> LABEL_CONVENTION</div>
+        <div style="font-size:12px; letter-spacing:.2em; line-height:2.2; color:var(--color-fg-muted)">
+          <span class="tick" style="color:var(--color-brass)">//</span> CROSS_CHAIN_PRICE_DISCOVERY<br>
+          <span class="tick" style="color:var(--color-brass)">//</span> NON_CUSTODIAL_INTERFACE<br>
+          <span class="tick" style="color:var(--color-brass)">//</span> BUILT_BY_9MM_PRO
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="icons">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">05</span><h2>FAVICONS_&amp;_ASSETS</h2></div>
+    <p class="sec-note">The full favicon set ships in <code>favicon/</code> with a paste-ready head snippet.
+    Chain, token, and protocol marks live in <code>assets/</code>.</p>
+
+    <div class="label pal-label"><span class="tick">//</span> FAVICON_SET</div>
+    <div class="icon-row">
+      <div class="icon-cell"><img src="favicon/favicon-16x16.png" width="16" height="16" alt=""><span class="label">16</span></div>
+      <div class="icon-cell"><img src="favicon/favicon-32x32.png" width="32" height="32" alt=""><span class="label">32</span></div>
+      <div class="icon-cell"><img src="favicon/apple-touch-icon.png" width="60" height="60" alt=""><span class="label">APPLE 180</span></div>
+      <div class="icon-cell"><img src="favicon/android-chrome-192x192.png" width="96" height="96" alt=""><span class="label">CHROME 192</span></div>
+      <div class="icon-cell"><img src="favicon/android-chrome-512x512.png" width="128" height="128" alt=""><span class="label">CHROME 512</span></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> CHAINS</div>
+    <div class="asset-row">
+      <div class="asset-cell"><img src="assets/chains/pulse.svg" alt="PulseChain"></div>
+      <div class="asset-cell"><img src="assets/chains/base.svg" alt="Base"></div>
+      <div class="asset-cell"><img src="assets/chains/ethereum.svg" alt="Ethereum"></div>
+      <div class="asset-cell"><img src="assets/chains/sonic.webp" alt="Sonic"></div>
+      <div class="asset-cell"><img src="assets/chains/solana.svg" alt="Solana"></div>
+      <div class="asset-cell"><img src="assets/chains/bsc.svg" alt="BSC"></div>
+      <div class="asset-cell"><img src="assets/chains/chia.png" alt="Chia"></div>
+    </div>
+
+    <div class="label pal-label"><span class="tick">//</span> 9MM_TOKEN + PROTOCOLS</div>
+    <div class="asset-row">
+      <div class="asset-cell"><img src="assets/tokens/9mm-pulse.gif" alt="9MM PulseChain"></div>
+      <div class="asset-cell"><img src="assets/tokens/9mm-base.webp" alt="9MM Base"></div>
+      <div class="asset-cell"><img src="assets/tokens/9mm-sonic.gif" alt="9MM Sonic"></div>
+      <div class="asset-cell"><img src="assets/tokens/9mm-eth.gif" alt="9MM Ethereum"></div>
+      <div class="asset-cell"><img src="assets/protocols/9x.png" alt="9x aggregator"></div>
+    </div>
+  </div>
+</section>
+
+<section id="usage">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">06</span><h2>USAGE</h2></div>
+    <div class="demo-grid">
+      <div>
+        <div class="label pal-label"><span class="tick">//</span> PLAIN_CSS</div>
+<pre><span class="c">&lt;!-- any stack --&gt;</span>
+&lt;link rel="stylesheet" href="<span class="k">tokens/colors.css</span>"&gt;
+&lt;link rel="stylesheet" href="<span class="k">fonts/fonts.css</span>"&gt;
+
+<span class="c">/* then: */</span>
+color: var(<span class="k">--color-brass</span>);
+font-family: var(<span class="k">--font-mono</span>);
+<span class="c">/* dark mode: add .dark to &lt;html&gt; */</span></pre>
+      </div>
+      <div>
+        <div class="label pal-label"><span class="tick">//</span> TAILWIND_V4</div>
+<pre><span class="c">/* globals.css */</span>
+@import "<span class="k">tokens/colors.css</span>";
+<span class="c">/* + paste tokens/tailwind-snippet.css */</span>
+
+<span class="c">&lt;!-- utilities: --&gt;</span>
+bg-ink-950 text-brass border-brass-deep
+text-fg-muted font-mono tracking-label</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="label">
+      <span class="tick">//</span> 9MM.PRO_MASTER_BRANDING_PACK<br>
+      <span class="tick">//</span> SOURCE_OF_TRUTH: TOKENS/COLORS.CSS · TOKENS/TOKENS.JSON · DESIGN.MD<br>
+      <span class="tick">//</span> @9MM_PRO · T.ME/NINEMMPRO
+    </div>
+  </div>
+</footer>
+
+<script>
+  // theme toggle
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const heroMark = document.querySelector('.hero-mark img');
+  const headerMark = document.querySelector('header img');
+  function applyTheme(dark) {
+    root.classList.toggle('dark', dark);
+    btn.textContent = 'MODE: ' + (dark ? 'DARK' : 'LIGHT');
+    headerMark.src = dark ? 'logo/svg/9mm-mark-white.svg' : 'logo/svg/9mm-mark-black.svg';
+    heroMark.src = 'logo/svg/9mm-mark-brass.svg';
+    refreshSwatches();
+  }
+  btn.addEventListener('click', () => applyTheme(!root.classList.contains('dark')));
+
+  // live hex labels computed from the actual token values
+  function rgbTripleToHex(triple) {
+    const parts = triple.trim().split(/\s+/).map(Number);
+    if (parts.length !== 3 || parts.some(isNaN)) return triple.trim();
+    return '#' + parts.map(n => n.toString(16).padStart(2, '0')).join('');
+  }
+  function refreshSwatches() {
+    const cs = getComputedStyle(root);
+    document.querySelectorAll('.swatch').forEach(sw => {
+      const hex = rgbTripleToHex(cs.getPropertyValue(sw.dataset.rgb));
+      sw.querySelector('.hx').textContent = hex;
+    });
+  }
+  // click-to-copy
+  document.querySelectorAll('.swatch').forEach(sw => {
+    sw.addEventListener('click', async () => {
+      const hex = sw.querySelector('.hx').textContent;
+      try { await navigator.clipboard.writeText(hex); } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = hex; document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); ta.remove();
+      }
+      const hx = sw.querySelector('.hx'), orig = hx.textContent;
+      sw.classList.add('copied'); hx.textContent = 'COPIED';
+      setTimeout(() => { sw.classList.remove('copied'); hx.textContent = orig; }, 900);
+    });
+  });
+  refreshSwatches();
+</script>
+</body>
+</html>
