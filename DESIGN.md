@@ -167,6 +167,20 @@ site picks it up on update.
   (`ui/9mm.css` handles this globally).
 - **Inputs** — `.field` (hairline container, brass focus ring) wrapping `input.term`
   (transparent, monospace, brass caret).
+- **Tables** — `.table-terminal`: uppercase tracked headers (`fg-subtle`, sortable →
+  brass), hairline row separators, right-aligned tabular numerals, brass row-hover
+  tint, `.num-up`/`.num-down` semantics. `.sticky-head` variant for scrolling panels
+  (opaque brass-tinted sticky thead — claim holders pattern).
+- **Ticker rows** — `.ticker-row` (rank `.rowno` / name / figures grid), `.is-selected`
+  gets a 3px brass inset edge.
+- **Scrollbars** — styled globally: 10px, transparent track, ink-700 thumb, brass on
+  hover. Ships in `ui/9mm.css`; nothing to add per project.
+- **Gradients & glows** — page backdrop is either flat `bg-ink-950` (xch) or
+  `.body-gradient` (landing: brass top glow + faint vertical gradient) — one per site,
+  never both. `--shadow-brand` for featured panels; `.glow` / `.glow-sm` / `.glow-text`
+  for brass element glows.
+- **Prose** — `.acc-body` for FAQ/compliance/long-form: Inter 14px/1.65 at `fg/72`,
+  dashed-brass-underline links, disc lists.
 - **Tooltip** — `.tooltip-container` + `.tooltip-box`: ink background, brass border,
   10.5px monospace.
 

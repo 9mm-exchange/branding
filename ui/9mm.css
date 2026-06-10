@@ -126,6 +126,15 @@ body { min-height: 100vh; overflow-x: hidden; }
   animation: scan 8s linear infinite;
 }
 
+/* ── page gradient (landing-style ambient backdrop) ───────────
+   Optional alternative to flat ink-950: faint brass glow at the
+   top + a barely-perceptible vertical gradient. Apply to body. */
+.body-gradient {
+  background:
+    radial-gradient(circle at 50% -12%, var(--body-glow), transparent 32rem),
+    linear-gradient(180deg, var(--body-grad-top) 0%, rgb(var(--ink-950-rgb)) 18rem, var(--body-grad-bottom) 100%);
+}
+
 /* ── hairlines ────────────────────────────────────────────── */
 .hairline { border-color: var(--hairline); }
 .hairline-brass { border-color: var(--hairline-brass); }
@@ -245,9 +254,114 @@ input.term::placeholder { color: rgb(var(--fg-rgb) / 0.35); }
   box-shadow: 0 0 0 1px rgb(var(--brass-rgb));
 }
 
-/* ── text effects ─────────────────────────────────────────── */
+/* ── tables ───────────────────────────────────────────────────
+   Canonical data table (xch markets / claim holders pattern).
+   Wrap in <div class="overflow-x-auto"> for narrow viewports.
+   Numbers right-aligned with tabular figures; first column left. */
+.table-terminal {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table-terminal thead th {
+  padding: 10px 8px;
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgb(var(--fg-subtle-rgb));
+  text-align: right;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--hairline);
+}
+.table-terminal thead th:first-child { text-align: left; }
+.table-terminal thead th.sortable { cursor: pointer; user-select: none; transition: color 0.15s ease; }
+.table-terminal thead th.sortable:hover { color: rgb(var(--brass-rgb)); }
+.table-terminal thead th.sorted { color: rgb(var(--brass-rgb)); }
+.table-terminal tbody td {
+  padding: 9px 8px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid rgb(var(--fg-rgb) / 0.04);
+}
+.table-terminal tbody td:first-child { text-align: left; }
+.table-terminal tbody tr { transition: background 0.15s ease; }
+.table-terminal tbody tr:hover { background: rgb(var(--brass-rgb) / 0.04); }
+.table-terminal .num-up { color: rgb(var(--success-rgb)); }
+.table-terminal .num-down { color: rgb(var(--danger-rgb)); }
+
+/* sticky header variant (claim holders pattern): opaque base +
+   brass tint so scrolled rows don't bleed through */
+.table-terminal.sticky-head thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: rgb(var(--brass-rgb));
+  font-weight: 600;
+  background-color: rgb(var(--ink-900-rgb));
+  background-image: linear-gradient(rgb(var(--brass-rgb) / 0.12), rgb(var(--brass-rgb) / 0.12));
+  border-bottom: 1px solid var(--hairline-brass);
+}
+
+/* ── ticker row (xch list pattern: rank / name / figures) ──── */
+.ticker-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background 0.15s ease;
+}
+.ticker-row:hover { background: rgb(var(--brass-rgb) / 0.04); }
+.ticker-row.is-selected {
+  background: rgb(var(--brass-rgb) / 0.08);
+  box-shadow: inset 3px 0 0 rgb(var(--brass-rgb));
+}
+.rowno {
+  font-size: 10px;
+  color: rgb(var(--fg-rgb) / 0.3);
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── prose (FAQ bodies, compliance copy, docs) ────────────── */
+.acc-body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgb(var(--fg-rgb) / 0.72);
+}
+.acc-body a {
+  color: rgb(var(--brass-rgb));
+  text-decoration: none;
+  border-bottom: 1px dashed rgb(var(--brass-rgb));
+  transition: color 0.15s;
+}
+.acc-body a:hover { color: rgb(var(--brass-hot-rgb)); }
+.acc-body strong { color: rgb(var(--fg-rgb)); font-weight: 600; }
+.acc-body ul { margin-top: 8px; padding-left: 18px; }
+.acc-body li { list-style: disc; margin-bottom: 4px; }
+.acc-body p + p { margin-top: 10px; }
+
+/* ── text effects & glows ─────────────────────────────────── */
 .text-shadow-brass {
   text-shadow: 0 0 24px rgb(var(--brass-rgb) / 0.35);
+}
+.glow {
+  box-shadow:
+    0 0 12px rgb(var(--brass-rgb) / 0.5),
+    0 0 40px rgb(var(--brass-rgb) / 0.18);
+}
+.glow-sm {
+  box-shadow:
+    0 0 10px rgb(var(--brass-rgb) / 0.35),
+    0 0 20px rgb(var(--brass-rgb) / 0.12);
+}
+.glow-text {
+  text-shadow:
+    0 0 8px rgb(var(--brass-deep-rgb) / 0.8),
+    0 0 20px rgb(var(--brass-rgb) / 0.2);
 }
 
 /* ── small indicators ─────────────────────────────────────── */

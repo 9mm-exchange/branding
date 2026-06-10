@@ -33,6 +33,11 @@
   --hairline:       rgba(138, 114, 52, 0.25);
   --hairline-brass: rgba(138, 114, 52, 0.55);
   --shadow-brand:   0 0 40px -10px rgba(138, 114, 52, 0.3);
+
+  /* page gradient stops (see .body-gradient in ui/9mm.css) */
+  --body-grad-top:    #f3efe4;
+  --body-grad-bottom: #f6f3ea;
+  --body-glow:        rgba(138, 114, 52, 0.07);
 }
 
 /* ── DARK THEME (.dark) — near-black ink, bright brass ──────── */
@@ -58,6 +63,11 @@
   --hairline:       rgba(255, 255, 255, 0.08);
   --hairline-brass: rgba(200, 168, 78, 0.35);
   --shadow-brand:   0 0 40px -10px rgba(200, 168, 78, 0.55);
+
+  /* page gradient stops (see .body-gradient in ui/9mm.css) */
+  --body-grad-top:    #09070c;
+  --body-grad-bottom: #030205;
+  --body-glow:        rgba(216, 178, 73, 0.08);
 }
 
 /* ── Resolved convenience tokens ─────────────────────────────── */

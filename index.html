@@ -399,6 +399,94 @@ el.classList.add('<span class="k">flash-up</span>')   <span class="c">// or 'fla
     </div>
 
     <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> TABLE_TERMINAL — data tables (sortable headers, semantic numbers)</span></div>
+      <div class="ex-demo" style="display:block">
+        <div style="overflow-x:auto">
+          <table class="table-terminal">
+            <thead><tr>
+              <th>Token</th>
+              <th class="sortable">Price</th>
+              <th class="sortable sorted">24h % ▼</th>
+              <th class="sortable">Volume (7d)</th>
+              <th class="sortable">Liquidity</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>wXCH</td><td>$24.18</td><td class="num-up">+4.20%</td><td>1,337,420</td><td>982,001</td></tr>
+              <tr><td>9MM</td><td>$0.0091</td><td class="num-up">+1.08%</td><td>410,332</td><td>250,118</td></tr>
+              <tr><td>SBX</td><td>$0.0004</td><td class="num-down">−2.96%</td><td>88,019</td><td>61,553</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+<pre>&lt;div class="overflow-x-auto"&gt;
+  &lt;table class="<span class="k">table-terminal</span>"&gt;                <span class="c">&lt;!-- add class "sticky-head" for scrolling panels:
+                                                       opaque brass-tinted sticky thead --&gt;</span>
+    &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Token&lt;/th&gt;&lt;th class="<span class="k">sortable sorted</span>"&gt;24h % ▼&lt;/th&gt;…&lt;/tr&gt;&lt;/thead&gt;
+    &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;wXCH&lt;/td&gt;&lt;td class="<span class="k">num-up</span>"&gt;+4.20%&lt;/td&gt;…&lt;/tr&gt;&lt;/tbody&gt;
+  &lt;/table&gt;&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> TICKER_ROW — rank / name / figures list (click-through rows)</span></div>
+      <div class="ex-demo" style="display:block">
+        <div class="ticker-row"><span class="rowno">01</span><span>wXCH / USDC</span><span class="up" style="font-size:12px">+4.20%</span><span style="font-size:12px; color:var(--color-fg-muted)">$24.18</span></div>
+        <div class="ticker-row is-selected"><span class="rowno">02</span><span>9MM / wXCH</span><span class="up" style="font-size:12px">+1.08%</span><span style="font-size:12px; color:var(--color-fg-muted)">$0.0091</span></div>
+        <div class="ticker-row"><span class="rowno">03</span><span>SBX / wXCH</span><span class="down" style="font-size:12px">−2.96%</span><span style="font-size:12px; color:var(--color-fg-muted)">$0.0004</span></div>
+      </div>
+<pre>&lt;div class="<span class="k">ticker-row</span>"&gt;&lt;span class="<span class="k">rowno</span>"&gt;01&lt;/span&gt;&lt;span&gt;wXCH / USDC&lt;/span&gt;…&lt;/div&gt;
+&lt;div class="<span class="k">ticker-row is-selected</span>"&gt;…&lt;/div&gt;   <span class="c">&lt;!-- brass inset edge + tint --&gt;</span></pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> SCROLLBAR — styled globally by ui/9mm.css (scroll this box)</span></div>
+      <div class="ex-demo" style="display:block">
+        <div class="demo-card" style="height:120px; overflow-y:auto; font-size:11px; letter-spacing:.12em; line-height:2.4; color:var(--color-fg-muted)">
+          &gt; SCROLL_ME — ink track, ink-700 thumb, brass on hover<br>
+          &gt; 0x9a4e…c8a8 SWAP 1,337.42 XCH → 32,001 USDC<br>
+          &gt; 0x11fe…0b77 ADD_LIQUIDITY 9MM/wXCH<br>
+          &gt; 0x77aa…e901 CLAIM 412.99 9MM<br>
+          &gt; 0x3c01…aa19 SWAP 88.10 XCH → 2,130 USDC<br>
+          &gt; 0xfe92…1d20 REMOVE_LIQUIDITY SBX/wXCH<br>
+          &gt; 0x5b77…c001 SWAP 9,000 9MM → 81.9 XCH<br>
+          &gt; EOF_
+        </div>
+      </div>
+<pre><span class="c">/* nothing to add — ::-webkit-scrollbar rules ship in ui/9mm.css:
+   10px, transparent track, ink-700 thumb with ink-950 border, brass thumb on hover */</span></pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> GRADIENTS_&amp;_GLOWS — page backdrop, brand shadow, element glows</span></div>
+      <div class="ex-demo">
+        <div class="body-gradient" style="flex:1; min-width:200px; height:130px; border:1px solid var(--hairline); display:grid; place-items:center"><span class="label">BODY_GRADIENT</span></div>
+        <div class="demo-card" style="flex:1; min-width:200px; height:130px; display:grid; place-items:center; box-shadow:var(--shadow-brand)"><span class="label">SHADOW_BRAND</span></div>
+        <div class="demo-card" style="flex:1; min-width:200px; height:130px; display:grid; place-items:center; gap:0">
+          <span class="glow-sm" style="border:1px solid var(--hairline-brass); padding:8px 16px; font-size:11px; letter-spacing:.18em; color:var(--color-brass)">GLOW_SM</span>
+          <span class="glow-text" style="font-size:13px; letter-spacing:.18em; color:var(--color-brass)">GLOW_TEXT</span>
+        </div>
+      </div>
+<pre>&lt;body class="<span class="k">body-gradient</span>"&gt;       <span class="c">&lt;!-- landing-style backdrop: brass glow at top + faint vertical grad.
+                                       alternative to flat bg-ink-950 (xch style) — pick ONE per site --&gt;</span>
+style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c">&lt;!-- hero cards / featured panels --&gt;</span>
+&lt;span class="<span class="k">glow-sm</span>"&gt; / &lt;span class="<span class="k">glow</span>"&gt; / &lt;span class="<span class="k">glow-text</span>"&gt;</pre>
+    </div>
+
+    <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> PROSE — acc-body for FAQ / compliance / long-form copy</span></div>
+      <div class="ex-demo" style="display:block">
+        <div class="acc-body" style="max-width:560px">
+          <p>Long-form copy switches to <strong>Inter</strong> at 14px/1.65. Links get a
+          <a href="#recipes">dashed brass underline</a> and brighten on hover.</p>
+          <ul><li>Lists use plain discs</li><li>with tight 4px spacing</li></ul>
+        </div>
+      </div>
+<pre>&lt;div class="<span class="k">acc-body</span>"&gt;
+  &lt;p&gt;…&lt;a href&gt;…&lt;/a&gt;…&lt;strong&gt;…&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul&gt;&lt;li&gt;…&lt;/li&gt;&lt;/ul&gt;
+&lt;/div&gt;</pre>
+    </div>
+
+    <div class="ex">
       <div class="ex-head"><span class="label"><span class="tick">//</span> ICONS — lucide-react only</span></div>
       <div class="ex-demo" style="display:block">
         <p style="font-family:var(--font-sans); color:var(--color-fg-muted); margin:0">
