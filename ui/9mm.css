@@ -81,19 +81,21 @@ body { min-height: 100vh; overflow-x: hidden; }
 }
 ::-webkit-scrollbar-thumb:hover { background: rgb(var(--brass-rgb)); }
 
-/* ── grid backgrounds ─────────────────────────────────────── */
+/* ── ambient washes ───────────────────────────────────────────
+   Page backgrounds are SOLID ink — never line grids (those were
+   retired in the "Refined Terminal" redesign). These classes give
+   a section subtle depth; apply them on a dedicated overlay div:
+   <div class="absolute inset-0 grid-bg pointer-events-none" /> */
 .grid-bg {
-  background-image:
-    linear-gradient(rgb(var(--brass-rgb) / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--brass-rgb) / 0.08) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background:
+    radial-gradient(circle at 15% 5%, rgb(var(--brass-rgb) / 0.06), transparent 26rem),
+    linear-gradient(180deg, rgb(var(--fg-rgb) / 0.018), transparent 18rem);
 }
 
 .grid-bg-fine {
-  background-image:
-    linear-gradient(rgb(var(--fg-rgb) / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--fg-rgb) / 0.05) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background:
+    linear-gradient(90deg, transparent, rgb(var(--brass-rgb) / 0.045), transparent);
+  opacity: 0.42;
 }
 
 /* ── noise overlay (apply to ONE wrapper per page) ────────── */

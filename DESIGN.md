@@ -152,7 +152,10 @@ site picks it up on update.
   (`.bracket-card`), brackets brighten/extend on hover.
 - **Hairlines** — 1px borders from `--hairline`; brass hairlines for emphasis.
   Prefer hairlines over shadows for separation.
-- **Grid backgrounds** — faint line grids: `.grid-bg` 48px, `.grid-bg-fine` 24px.
+- **Backgrounds** — page backgrounds are **solid ink** (`bg-ink-950`); line grids were
+  retired in the "Refined Terminal" redesign. For section depth, overlay `.grid-bg`
+  (soft brass radial glow) or `.grid-bg-fine` (soft sweep) on an absolute
+  `pointer-events-none` div.
 - **Noise** — SVG noise overlay at ~0.035 opacity for texture on large dark areas.
 - **Scanline** — slow vertical sweep (`@keyframes scan`, ~8s, 140px band). Decorative
   only; disable freely.

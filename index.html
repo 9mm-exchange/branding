@@ -139,7 +139,7 @@
   footer .label { line-height: 2.1; }
 </style>
 </head>
-<body class="grid-bg noise scanline">
+<body class="noise scanline">
 
 <header>
   <div class="wrap">
@@ -379,13 +379,22 @@ el.classList.add('<span class="k">flash-up</span>')   <span class="c">// or 'fla
     </div>
 
     <div class="ex">
-      <div class="ex-head"><span class="label"><span class="tick">//</span> SURFACES — grid backgrounds, hairlines, noise, scanline</span></div>
+      <div class="ex-head"><span class="label"><span class="tick">//</span> SURFACES — solid ink + ambient washes, hairlines, noise, scanline</span></div>
       <div class="ex-demo">
-        <div class="grid-bg demo-card" style="flex:1; min-width:200px; height:110px"><span class="label">GRID_BG · 48PX</span></div>
-        <div class="grid-bg-fine demo-card" style="flex:1; min-width:200px; height:110px"><span class="label">GRID_BG_FINE · 24PX</span></div>
+        <div class="demo-card" style="flex:1; min-width:200px; height:110px; position:relative; overflow:hidden">
+          <div class="grid-bg" style="position:absolute; inset:0; pointer-events:none"></div>
+          <span class="label">GRID_BG · AMBIENT_GLOW_OVERLAY</span>
+        </div>
+        <div class="demo-card" style="flex:1; min-width:200px; height:110px; position:relative; overflow:hidden">
+          <div class="grid-bg-fine" style="position:absolute; inset:0; pointer-events:none"></div>
+          <span class="label">GRID_BG_FINE · SOFT_SWEEP</span>
+        </div>
         <div class="demo-card hairline-brass" style="flex:1; min-width:200px; height:110px"><span class="label">HAIRLINE_BRASS</span></div>
       </div>
-<pre>&lt;body class="<span class="k">grid-bg noise scanline</span>"&gt;   <span class="c">&lt;!-- noise + scanline: ONE per page (this page uses them) --&gt;</span>
+<pre><span class="c">&lt;!-- page background is SOLID ink-950 — never line grids (retired). --&gt;</span>
+&lt;body class="<span class="k">bg-ink-950 noise scanline</span>"&gt;        <span class="c">&lt;!-- noise/scanline: ONE per page, optional --&gt;</span>
+&lt;section class="relative"&gt;                       <span class="c">&lt;!-- ambient depth per section: --&gt;</span>
+  &lt;div class="absolute inset-0 <span class="k">grid-bg</span> pointer-events-none" /&gt;
 &lt;div class="<span class="k">hairline</span>"&gt; / &lt;div class="<span class="k">hairline-brass</span>"&gt;  <span class="c">&lt;!-- border-color utilities --&gt;</span></pre>
     </div>
 
