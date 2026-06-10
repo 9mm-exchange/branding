@@ -9,6 +9,23 @@ or `DESIGN.md` gets an entry here and a version bump:
 - **MINOR** — new components, classes, tokens, or assets. Backwards compatible.
 - **PATCH** — value tweaks, doc fixes, asset regenerations.
 
+## 1.2.0 — 2026-06-10
+
+Close the asset gaps found auditing the landing repo against the pack — the
+landing was the only source of truth for collection artwork.
+
+- **`assets/nfts/`** — OG collection art (pulse-og, based-og, sonic-og,
+  genesis-og) plus the four per-chain PUSSY 404 renders, copied verbatim from
+  the landing's `public/nfts/`.
+- **`assets/tokens/pussy.webp`** — the PUSSY 404 token icon (the landing token
+  table and NFT cards use it; the pack only had the four 9MM icons).
+
+Still known-missing (needs design tooling/art, tracked here so it isn't lost):
+a horizontal wordmark/lockup SVG (mark + `9MM.PRO` type as paths) for contexts
+where type can't be set; product marks for DEX / Claim / XCH Terminal; a social
+kit beyond the one OG card (X banner, square avatar exports, the per-product
+OG template described in DESIGN.md §7).
+
 ## 1.1.0 — 2026-06-10
 
 Light theme replaced with **aged paper** + default-scheme policy. Prompted by

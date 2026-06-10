@@ -108,7 +108,7 @@ tokens/         colors.css (CSS custom properties) · tokens.json · tailwind-sn
 fonts/          JetBrains Mono (300–800 + italic) · Inter (400–700) · fonts.css · OFL licenses
 logo/           svg/ traced masters (white · black · brass) · png/ renders (559 + 1024)
 favicon/        .ico, PNGs, theme-aware icon.svg, maskable PWA icon, manifest, head snippet
-assets/         chain icons · 9MM token icons per chain · 9x protocol marks
+assets/         chain icons · 9MM + PUSSY 404 token icons · 9x protocol marks · nfts/ OG collection art
 social/         og-image.png (1200×630 reference card)
 docs/           README preview images
 DESIGN.md       the brand guide
