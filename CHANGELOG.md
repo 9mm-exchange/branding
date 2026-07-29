@@ -1,13 +1,39 @@
 # Changelog — 9MM Pro Branding Pack
 
-Agents and humans: check this file (and `VERSION`) to see what changed since your
-site last synced with the pack. Every change to `ui/9mm.css`, `tokens/`, `fonts/`,
-or `DESIGN.md` gets an entry here and a version bump:
+Agents and humans: check this file (and `VERSION`) before carrying reference
+material into a product. Every change to `ui/9mm.css`, `tokens/`, `fonts/`,
+`DESIGN.md`, or `SURFACES.md` gets an entry here and a version bump:
 
-- **MAJOR** — breaking: a class or token renamed/removed, a value change that
-  requires consumer markup edits.
+- **MAJOR** — a published reference class/token rename/removal, or a value change
+  that requires a deliberate local migration.
 - **MINOR** — new components, classes, tokens, or assets. Backwards compatible.
 - **PATCH** — value tweaks, doc fixes, asset regenerations.
+
+## 1.3.0 — 2026-07-28
+
+**Reference-model clarification.** This repository documents the brand baseline;
+it is not a git submodule, cross-repository CSS import, remote asset source, or
+runtime dependency. It does not assert that existing product repositories are
+synced to it. When a product change is chosen, its implementation remains local to
+that product.
+
+- **`README.md`, `DESIGN.md`, and `CLAUDE.md`** — replaced the automatic-import
+  contract with a deliberate adoption and review workflow. `ui/9mm.css` and the
+  Tailwind theme are now reference code to translate locally.
+- **`SURFACES.md`** — added the canonical product/environment directory: hub, DEX,
+  9x, Claim, Claim Dev, Royal Gate, XCH Terminal, and 9MM Launch. It defines
+  lockups, status vocabulary, copy guardrails, active versus legacy assets, and
+  the boundary between shared branding and product-owned behavior.
+- **Product shell recipes** — added `.product-lockup`, `.system-status`,
+  `.step-rail`, and `.network-chip` reference primitives to `ui/9mm.css` and the
+  component showcase. They are text-first patterns, not new bespoke product marks.
+- **Current asset additions** — copied the Robinhood and Arc chain marks from the
+  current `landing` GitHub branch, plus the current XCH Chia mark from the
+  `xch-terminal` GitHub branch. Robinhood and Arc remain informational `SOON`
+  placeholders: no wallet, RPC, API, proof, claim, or transaction behavior is
+  implied.
+- **Light-theme wording** — clarified that no pure-white *surfaces* are allowed;
+  white remains valid for dark-theme primary text and the white masterbrand mark.
 
 ## 1.2.0 — 2026-06-10
 

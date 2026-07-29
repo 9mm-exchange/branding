@@ -1,7 +1,10 @@
 # 9MM Pro — Brand & Design Guide
 
-The canonical reference for all 9MM Pro frontends. Token values in this document
-mirror [`tokens/colors.css`](tokens/colors.css) and [`tokens/tokens.json`](tokens/tokens.json) —
+The canonical reference for all 9MM Pro frontends. This repository is not a
+runtime dependency and does not claim that any product is currently synced to it.
+When a product change is chosen, its implementation belongs in that product's own
+source tree. Token values in this document mirror
+[`tokens/colors.css`](tokens/colors.css) and [`tokens/tokens.json`](tokens/tokens.json) —
 those files are the machine source of truth; this document explains how to use them.
 
 ---
@@ -16,21 +19,18 @@ those files are the machine source of truth; this document explains how to use t
 | **Twitter / X** | [@9mm_pro](https://x.com/9mm_pro) |
 | **Telegram** | [t.me/ninemmpro](https://t.me/ninemmpro) |
 
-**Product surfaces**
-
-| Domain | Product |
-|---|---|
-| `9mm.pro` | Landing + docs |
-| `dex.9mm.pro` | V2/V3 DEX |
-| `9x.9mm.pro` | 9x aggregator |
-| `claim.9mm.pro` | Revenue-share claims |
-| `xch.9mm.pro` | XCH Terminal (Chia DEX aggregator) |
+**Product surfaces.** See [`SURFACES.md`](SURFACES.md) for the source-of-truth
+directory, environment semantics, and product-specific boundaries. The shared
+family lockup is always `9MM.PRO / PRODUCT_LABEL`, except the standalone routing
+surface `9X.SWAP`.
 
 **Voice & tone.** Terminal / tactical HUD. Short declarative copy. Section labels
 and nav items are ALL-CAPS monospace with underscores replacing spaces:
 `CROSS_CHAIN_PRICE_DISCOVERY`, `XCH_TERMINAL`, `BUILT_BY_9MM_PRO`.
 Separators (`.`, `/`, `//`) get the brass accent color. Sub-products are namespaced
-under the brand: `9MM.PRO / XCH_TERMINAL`.
+under the brand: `9MM.PRO / XCH_TERMINAL`. Do not invent product marks: the
+current system uses typeset lockups, the masterbrand mark, and approved product
+art only where it already exists.
 
 ---
 
@@ -77,9 +77,10 @@ distinctly toned manila, field-manual feel. All tokens ship as RGB triples
 > home, and "light mode is too bright" feedback traced largely to users dropped
 > into light by default.)
 >
-> **No pure white anywhere.** The original light theme (`#ffffff` cards on
+> **No pure-white surfaces.** The original light theme (`#ffffff` cards on
 > `#faf7ef`) read as glare and was replaced in v1.1.0 with the aged-paper
-> palette below. Don't reintroduce white surfaces.
+> palette below. Don't reintroduce white surfaces; `#ffffff` remains reserved
+> for primary text in dark mode and the white logo mark.
 
 ### Brand accent — brass
 
@@ -200,6 +201,18 @@ site picks it up on update.
   dashed-brass-underline links, disc lists.
 - **Tooltip** — `.tooltip-container` + `.tooltip-box`: ink background, brass border,
   10.5px monospace.
+- **Product lockup** — `.product-lockup`: a typeset masterbrand, brass separator,
+  and canonical product label. It is the preferred cross-surface identity; use an
+  approved mark alongside it, never a newly invented product logo.
+- **System status** — `.system-status`: neutral system language with explicit
+  `.is-live`, `.is-soon`, `.is-dev`, or `.is-beta` state. The text label remains
+  mandatory; color is never the only status signal.
+- **Step rail** — `.step-rail`: ordered workflow states for constrained flows such
+  as connect, sign, and verify. Use `.is-current`, `.is-complete`, or
+  `.is-unavailable`; do not imply a transaction, entitlement, or eligibility.
+- **Network chip** — `.network-chip`: compact network identifier. Add
+  `.is-soon` only for informational, inactive networks; it is dashed and must not
+  be paired with wallet, RPC, API, proof, or claim behavior.
 
 ### Icons
 
@@ -287,58 +300,47 @@ into `<head>`.
 - Theme color: `#08060b` (ink-950 dark).
 - Page titles: `Product — descriptor | 9mm Pro` (e.g.
   `XCH Terminal — Chia DEX Aggregator & Cross-Chain Price Discovery | 9mm Pro`).
-- OG images are 1200×630: dark ink background, brass corner brackets,
-  `9MM.PRO / PRODUCT_NAME` lockup in JetBrains Mono. Static reference:
-  `social/og-image.png`; dynamic example: `xch-terminal/src/app/opengraph-image.tsx`.
+- OG images are 1200×630: dark ink background, brass corner brackets, and a
+  canonical typeset lockup in JetBrains Mono. Use `9MM.PRO / PRODUCT_LABEL`, or
+  `9X.SWAP` for the 9x product. Static reference: `social/og-image.png`.
+  A product owns and generates its own metadata image; this repository does not
+  provide runtime metadata routes.
 
 ---
 
-## 8. How to consume this pack
+## 8. Reference-only adoption
 
-Other projects reference this repo — they don't maintain their own copies of the
-brand CSS. Pull it in as a git submodule (recommended — updates are one
-`git submodule update --remote` away), or vendor a pinned copy of the folder and
-record the commit you took it from:
+Other projects consult this repository; they do **not** link to it at build time,
+runtime, or through a git submodule. A product owns its final CSS, font files,
+asset copies, markup, and behavior. The reference implementation in `ui/9mm.css`
+is a recipe to translate, not a stylesheet to import.
 
-```bash
-git submodule add https://github.com/9mm-exchange/branding.git branding
-```
+1. Read this guide, [`SURFACES.md`](SURFACES.md), and the live reference
+   [`index.html`](index.html).
+2. Compare a proposed change with the relevant product's local implementation.
+   If you choose to apply it, implement the selected source material locally and
+   retain its token values and accessibility behavior.
+3. Use the changelog to understand reference changes. There is no required pin,
+   adoption record, or automatic refresh process.
 
-**Tailwind v4 projects (the standard path)** — import one file:
-
-```css
-/* globals.css */
-@import "tailwindcss";
-@import "../branding/ui/9mm.css";      /* adjust path to where the repo lives */
-@import "../branding/fonts/fonts.css";
-```
-
-That single `ui/9mm.css` import brings the color tokens, the `@theme` block
-(`bg-ink-950`, `text-brass`, `font-mono`, `tracking-label`, …), base styles, and
-all shared component classes (`.bracket-card`, `.btn-terminal`, `.grid-bg`,
-`.scanline`, `.stagger`, …). **Delete the local copies of those rules from your
-globals.css** — local copies are how the sites drifted. Project-specific styles
-go after the import and should be things this pack doesn't cover.
+**Tailwind v4** — translate the relevant `@theme` values and recipes into the
+product's own stylesheet. **Plain CSS / any stack** — carry the required custom
+properties, font declarations, and component rules locally. In both cases, do not
+use a cross-repository `@import`, remote stylesheet, or remote asset URL.
 
 ⚠ Never define `--color-base`, `--color-eth`, or `--color-chia` in `@theme` —
 `text-base` collides with Tailwind's built-in font-size utility. Prefix chain
 colors: `--color-chain-base`.
 
-**Plain CSS / any stack** — `ui/9mm.css` works without Tailwind (browsers skip the
-`@theme` block; the component classes are vanilla CSS). Or go minimal:
-
-```html
-<link rel="stylesheet" href="/branding/tokens/colors.css">
-<link rel="stylesheet" href="/branding/fonts/fonts.css">
-```
-
 Toggle dark mode by adding `.dark` to `<html>`.
 
-**Next.js fonts** — either self-host via `fonts/fonts.css`, or keep `next/font/google`
-with the same families/weights. Self-hosting is preferred (no Google dependency).
+**Fonts** — copy the self-hosted font files and declarations that a product uses,
+or configure an equivalent local font pipeline with the same families and weights.
+Self-hosting is preferred (no Google dependency).
 
 **Programmatic** — read `tokens/tokens.json` (W3C design-tokens-style format).
 
-**Updating** — bump the submodule (`git submodule update --remote`) or refresh the
-vendored copy to a newer commit. Never fork a component locally; PR the change
-here instead.
+**Updating** — manually compare this reference with the relevant product, then
+carry over only the changes you choose. Product-specific
+components, live status, wallet/RPC/API behavior, reward schedules, eligibility,
+and legal disclosures remain product-owned.

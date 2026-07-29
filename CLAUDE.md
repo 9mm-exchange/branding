@@ -1,26 +1,28 @@
 # 9MM Pro Branding Pack — Agent Guide
 
-This repo is the **single source of truth** for 9MM Pro's brand and UI across all
-frontends (landing, dex, 9x, claim, xch, tokens, …). Product repos reference this
-repo; they do not keep their own copies of brand CSS.
+This repo is the **canonical reference** for 9MM Pro's brand and UI across all
+frontends (hub, dex, 9x, claim, royal gate, xch, launch, tokens, …). It is not a
+runtime dependency and does not claim that any product currently carries its
+assets, token values, or recipes.
 
 ## How to use this pack (when working in a PRODUCT repo)
 
-1. **Before any UI work**, read `DESIGN.md` here — colors, typography, components,
-   layout/motion/z-index/accessibility rules all live there. `index.html` shows every
-   component live with copyable markup (works from `file://`).
-2. **Never copy component CSS into a product's globals.css.** Import
-   `ui/9mm.css` (+ `fonts/fonts.css`) instead. Local copies are how the sites
-   drifted apart. If a component needs to change, change it HERE.
-3. **Check for design updates**: compare the product's recorded pack version against
-   `VERSION`, then read `CHANGELOG.md` entries since. MAJOR = expect markup changes;
-   MINOR = new things available; PATCH = silent value updates.
-4. Tailwind utilities come from the `@theme` block in `ui/9mm.css`
-   (`bg-ink-950`, `text-brass`, `text-fg-muted`, `font-mono`, `tracking-label`, …).
-   Never define `--color-base`/`--color-eth`/`--color-chia` in `@theme` —
-   `text-base` collides with Tailwind's font-size utility.
+1. **Before any UI work**, read `DESIGN.md` and `SURFACES.md` here — colors,
+   typography, product lockups, status boundaries, and accessibility rules live
+   there. `index.html` shows the reference recipes with copyable markup.
+2. **Do not add this repo as a submodule or import its CSS/assets across repositories.**
+   If a product change is approved, implement it in that product's own source tree.
+   Do not promise automatic inheritance of later brand changes or claim that the
+   product is currently synced to this reference.
+3. **Use the changelog as context.** Before proposing a cross-surface change, compare
+   the guide and changelog with the product's local implementation. Adoption is
+   manual and optional; this repository records no consumer state.
+4. `ui/9mm.css` and the Tailwind `@theme` block are **reference code**, not a shared
+   stylesheet. When translating its utilities locally, never define
+   `--color-base`/`--color-eth`/`--color-chia` in `@theme` — `text-base` collides with
+   Tailwind's font-size utility. Prefix chain colors, for example `--color-chain-base`.
 5. Icons: **lucide-react only**. Sizes/conventions in `DESIGN.md` §5.
-6. **Theme-safe artwork:** white-on-transparent images (logo PNGs, og-image,
+6. **Theme-safe artwork:** white-on-transparent images (logo PNGs, OG image,
    protocol marks) vanish on the light theme. Swap the logo variant with the
    theme, or pin the image on a fixed `#08060b` ink chip. Rule + examples in
    `DESIGN.md` §2; live demos in `index.html` (header logo swap, favicon chips).
@@ -38,25 +40,23 @@ repo; they do not keep their own copies of brand CSS.
   and its entry in `DESIGN.md` §5.
 - Verify visually before committing: open `index.html` headlessly, check BOTH themes
   (the MODE toggle), confirm zero console errors.
-- `ui/9mm.css` must stay valid as **plain CSS** (it's consumed both through Tailwind
-  builds and raw `<link>`). Use `rgb(var(--x-rgb) / 0.5)` syntax — never
-  `rgba(var(--x-rgb), 0.5)`, which is invalid outside Tailwind builds.
+- `ui/9mm.css` must stay valid as **plain CSS** so it remains a usable reference.
+  Use `rgb(var(--x-rgb) / 0.5)` syntax — never `rgba(var(--x-rgb), 0.5)`, which
+  is invalid outside Tailwind builds.
 - All animation must no-op under `prefers-reduced-motion: reduce`.
 - Class names are public API — renames/removals are MAJOR version bumps.
 - Keep `tokens/colors.css`, `tokens/tokens.json`, and the DESIGN.md §3 tables in
   sync — same values, three formats.
 
-## Snippet for product repos' CLAUDE.md
+## Optional note for a product repo's CLAUDE.md
 
-Paste this into each consuming site's CLAUDE.md (adjust the path):
+Use this only if you want a local reminder that the reference exists:
 
 ```markdown
 ## Design System
-The brand source of truth is the branding repo (../branding or
-https://github.com/9mm-exchange/branding). Before any visual/UI work: read its DESIGN.md;
-use components from ui/9mm.css (imported in globals.css) — never re-implement
-or locally copy them. This project is synced to branding pack version X.Y.Z —
-when starting UI work, diff that against branding/VERSION and read
-branding/CHANGELOG.md for anything newer, then update the pin here.
+The brand reference is https://github.com/9mm-exchange/branding. Before visual/UI
+work, read its DESIGN.md and SURFACES.md. This product does not use the branding
+repo as a submodule, runtime asset source, or imported stylesheet. Compare any
+proposed brand change with this product's local implementation before applying it.
 Do not deviate from DESIGN.md without explicit user approval.
 ```

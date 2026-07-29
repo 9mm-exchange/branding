@@ -1,19 +1,13 @@
 /* ──────────────────────────────────────────────────────────────
-   9MM Pro — canonical UI layer (Tailwind v4)
-   ONE import gives you: color tokens, the @theme block, base
-   styles, and every shared component class (.bracket-card,
-   .btn-terminal, .grid-bg, …).
+   9MM Pro — reference UI layer (Tailwind v4)
+   This file documents the canonical token and component recipes.
+   Product repositories deliberately copy and adapt selected rules
+   into their OWN stylesheets; do not import this repository across
+   a git, build, or runtime boundary.
 
-     @import "<path-to-branding>/ui/9mm.css";   (after tailwindcss)
-
-   Do NOT copy these rules into a project's globals.css — that is
-   how the sites drifted apart. Import this file; if a component
-   needs to change, change it HERE and every site picks it up.
-
-   Canonical source: extracted from xch-terminal (most current),
-   with reduced-motion guards. Plain-CSS projects can import this
-   too — the @theme block is ignored by browsers and everything
-   else is vanilla CSS.
+   Canonical source: distilled from active 9MM product surfaces,
+   with reduced-motion guards. The rules remain valid plain CSS so
+   they can be translated to any stack.
    ────────────────────────────────────────────────────────────── */
 
 @import "../tokens/colors.css";
@@ -477,6 +471,93 @@ input[type="radio"].term {
 .badge-live { border-color: rgb(var(--success-rgb) / 0.4); color: rgb(var(--success-rgb)); }
 .badge-soon { border-color: rgb(var(--warn-rgb) / 0.4); color: rgb(var(--warn-rgb)); }
 .badge-deprecated { color: rgb(var(--fg-subtle-rgb)); text-decoration: line-through; }
+
+/* ── product shell primitives ───────────────────────────────
+   Reference markup:
+   <div class="product-lockup"><span>9MM<span class="product-lockup-dot">.</span>PRO</span><span class="product-lockup-separator">/</span><span>CLAIM</span></div>
+   <span class="system-status is-live">LIVE</span>
+   <ol class="step-rail"><li class="is-complete">CONNECT</li><li class="is-current">SIGN</li><li>CHECK</li></ol>
+   <span class="network-chip is-soon">ARC CHAIN · SOON</span> */
+.product-lockup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  color: rgb(var(--fg-rgb));
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.product-lockup-dot, .product-lockup-separator { color: rgb(var(--brass-rgb)); }
+.product-lockup-separator { letter-spacing: 0; }
+
+.system-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--hairline);
+  color: rgb(var(--fg-muted-rgb));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+.system-status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  border-radius: 50%;
+}
+.system-status.is-live { border-color: rgb(var(--success-rgb) / 0.4); color: rgb(var(--success-rgb)); }
+.system-status.is-soon { border-color: rgb(var(--warn-rgb) / 0.4); color: rgb(var(--warn-rgb)); }
+.system-status.is-dev { border-style: dashed; color: rgb(var(--fg-subtle-rgb)); }
+.system-status.is-beta { border-color: var(--hairline-brass); color: rgb(var(--brass-rgb)); }
+
+.step-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.step-rail > li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(var(--fg-subtle-rgb));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.step-rail > li + li::before { content: '→'; color: rgb(var(--fg-subtle-rgb)); }
+.step-rail > li.is-complete { color: rgb(var(--success-rgb)); }
+.step-rail > li.is-current { color: rgb(var(--brass-rgb)); }
+.step-rail > li.is-unavailable { color: rgb(var(--fg-subtle-rgb)); text-decoration: line-through; }
+
+.network-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--hairline-brass);
+  color: rgb(var(--brass-rgb));
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  padding: 5px 8px;
+  text-transform: uppercase;
+}
+.network-chip.is-soon {
+  border-color: rgb(var(--warn-rgb) / 0.55);
+  border-style: dashed;
+  color: rgb(var(--warn-rgb));
+}
 
 /* ── tabs ─────────────────────────────────────────────────── */
 .tabs {

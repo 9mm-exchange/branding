@@ -7,10 +7,11 @@
 
 # 9MM<span>.</span>PRO — Branding Pack
 
-**The single source of truth for the 9MM Pro brand and UI.**
-Tokens, components, fonts, logos, favicons — one repo, every frontend.
+**The canonical reference for the 9MM Pro brand and UI.**
+Tokens, component recipes, fonts, logos, favicons, and product-surface guidance —
+one maintained reference for documenting and comparing the 9MM Pro ecosystem.
 
-[![version](https://img.shields.io/badge/pack-v1.2.0-c8a84e?style=flat-square&labelColor=08060b)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/pack-v1.3.0-c8a84e?style=flat-square&labelColor=08060b)](CHANGELOG.md)
 [![design guide](https://img.shields.io/badge/guide-DESIGN.md-c8a84e?style=flat-square&labelColor=08060b)](DESIGN.md)
 [![live reference](https://img.shields.io/badge/live_reference-index.html-c8a84e?style=flat-square&labelColor=08060b)](index.html)
 
@@ -20,16 +21,18 @@ Tokens, components, fonts, logos, favicons — one repo, every frontend.
 
 ---
 
-Every 9MM Pro frontend — landing, DEX, 9x, claim, XCH Terminal, tokens — pulls
-its brand from this repo. Product repos **reference** it; they never keep local
-copies of brand CSS. That rule exists because local copies are exactly how the
-sites drifted apart before this pack existed.
+This repo is a **reference, not a runtime dependency**. It captures the brand
+baseline across the hub, DEX, 9x, Claim, Royal Gate, XCH Terminal, and 9MM Launch.
+It does not assert that any product currently imports, mirrors, or is synced to
+this pack. No submodules, remote assets, or cross-repository CSS imports are part
+of the intended production contract.
 
 | | |
 |---|---|
 | 📖 **[DESIGN.md](DESIGN.md)** | The brand guide: logo rules, color system, typography, components, layout/motion/z-index/accessibility specs |
+| 🧭 **[SURFACES.md](SURFACES.md)** | Product directory: canonical lockups, environment/status semantics, and what belongs in the shared brand layer |
 | 🖥️ **[index.html](index.html)** | Live component reference — every shared class rendered with copyable markup, dark/light toggle, click-to-copy color swatches. Just open it in a browser |
-| 📋 **[CHANGELOG.md](CHANGELOG.md)** + [VERSION](VERSION) | What changed since your site last synced |
+| 📋 **[CHANGELOG.md](CHANGELOG.md)** + [VERSION](VERSION) | What changed in the reference since its last release |
 | 🤖 **[CLAUDE.md](CLAUDE.md)** | Protocol for AI agents building 9MM Pro frontends |
 
 ## Preview
@@ -41,77 +44,63 @@ tokens, fonts, and logos, so if it looks right, the pack works:
 |---|---|
 | ![dark](docs/preview-dark.png) | ![light](docs/preview-light.png) |
 
-## Quick start
+## Use the reference
 
-Reference this repo from your project — git submodule recommended, or a
-vendored copy pinned to a commit:
+1. Read [DESIGN.md](DESIGN.md) and [SURFACES.md](SURFACES.md) before changing a
+   product's visual identity or cross-surface copy.
+2. Compare the relevant product implementation with the reference, then make any
+   chosen changes directly in that product's repository. Do not import this
+   repository's CSS or assets at build time or runtime.
+3. Use [CHANGELOG.md](CHANGELOG.md) to understand what changed in the reference.
+   Brand updates are manual; this repository does not establish a sync mechanism.
 
-```bash
-git submodule add https://github.com/9mm-exchange/branding.git branding
-```
-
-**1 · Tailwind v4 sites (the standard path)** — one import is the whole brand:
-
-```css
-/* globals.css */
-@import "tailwindcss";
-@import "../branding/ui/9mm.css";      /* tokens + @theme utilities + all components */
-@import "../branding/fonts/fonts.css"; /* self-hosted JetBrains Mono + Inter */
-```
-
-You get the utilities (`bg-ink-950`, `text-brass`, `text-fg-muted`, `font-mono`,
-`tracking-label`, …) **and** every shared component class — `.bracket-card`,
-`.btn-terminal`, `.table-terminal`, `.ticker-row`, modals, toasts, tabs, badges,
-loading states, and the rest. Delete any local copies of those rules from your
-globals.css.
-
-**2 · Non-Tailwind pages** — the same two imports work as plain CSS (browsers
-skip the `@theme` block), or take just `tokens/colors.css` + `fonts/fonts.css`
-for tokens only.
-
-**3 · Favicons** — copy the image files + `site.webmanifest` from
+**Favicons** — copy the image files + `site.webmanifest` from
 [`favicon/`](favicon/) into `public/`, paste [`favicon/snippet.html`](favicon/snippet.html)
 into `<head>`.
 
-**4 · Logo** — use the SVG masters in [`logo/svg/`](logo/svg/): white on dark,
+**Logo** — use the SVG masters in [`logo/svg/`](logo/svg/): white on dark,
 black or brass on light. Never let white-on-transparent artwork sit on a
 theme-driven background (DESIGN.md §2).
 
-**5 · Icons** — [lucide-react](https://lucide.dev) only. Sizes and conventions
+**Icons** — [lucide-react](https://lucide.dev) only. Sizes and conventions
 in DESIGN.md §5.
 
 ## Two rules that keep the brand coherent
 
-1. **Never copy component CSS into a project.** Import `ui/9mm.css`. If a
-   component needs to change, change it *here* — every site picks it up.
+1. **Never link this pack into a product at runtime.** Carry selected source
+   material into the product and keep a recorded source version so reviews are
+   deliberate and auditable.
 2. **Dark is the default scheme on every site.** Light (aged paper) is an
-   explicit, persisted toggle. No pure white anywhere, in either theme.
+   explicit, persisted toggle. No pure-white surfaces; white is reserved for
+   dark-theme primary text and the white logo mark.
 
-## Staying in sync
+## Version history
 
 [`VERSION`](VERSION) + [`CHANGELOG.md`](CHANGELOG.md) track every design change:
 
-- **MAJOR** — breaking: a class/token renamed or removed, markup edits required
+- **MAJOR** — a published reference class/token is renamed or removed, or a
+  reference value changes in a way that requires a deliberate local migration
 - **MINOR** — new components, classes, tokens, or assets
 - **PATCH** — value tweaks, doc fixes, asset regenerations
 
-Pin the pack version in your project's CLAUDE.md (paste-ready snippet in
-[CLAUDE.md](CLAUDE.md)). When starting UI work, diff your pin against `VERSION`
-and read the CHANGELOG entries since — token-only changes arrive silently on
-sync; MAJOR changes tell you exactly what to update.
+When starting UI work, read the current guide and the relevant changelog entries,
+then compare them with the product's local implementation before deciding what to
+change. This repository does not imply that a product has previously adopted a
+particular version.
 
 ## What's inside
 
 ```
-ui/9mm.css      the canonical UI layer — tokens, @theme, base styles, every component
+ui/9mm.css      reference implementation — tokens, @theme, base styles, component recipes
 tokens/         colors.css (CSS custom properties) · tokens.json · tailwind-snippet.css
 fonts/          JetBrains Mono (300–800 + italic) · Inter (400–700) · fonts.css · OFL licenses
 logo/           svg/ traced masters (white · black · brass) · png/ renders (559 + 1024)
 favicon/        .ico, PNGs, theme-aware icon.svg, maskable PWA icon, manifest, head snippet
-assets/         chain icons · 9MM + PUSSY 404 token icons · 9x protocol marks · nfts/ OG collection art
+assets/         chain icons · 9MM + PUSSY 404 token icons · 9x protocol marks · nfts/ OG collection art · provenance notes
 social/         og-image.png (1200×630 reference card)
 docs/           README preview images
 DESIGN.md       the brand guide
+SURFACES.md     canonical product directory and status boundaries
 index.html      the live component reference
 ```
 

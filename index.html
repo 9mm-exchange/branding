@@ -168,9 +168,10 @@
       <div class="label"><span class="tick">//</span> MASTER_BRANDING_PACK <span class="animate-blink" style="color:var(--color-brass)">▮</span></div>
       <h1>9MM<span class="dot">.</span>PRO</h1>
       <p class="tagline">Decentralized. Efficient. Yours. — the canonical brand reference
-      for every 9MM Pro frontend. This page is rendered from the pack's own
-      <code>ui/9mm.css</code>, fonts, and logos: every component below is the live shared
-      implementation, with the exact markup to copy.</p>
+      for every 9MM Pro frontend. This page renders the reference recipes locally;
+      when you choose to update a product, carry only the selected values, assets, and
+      patterns into that product's own codebase.
+      It is never a runtime stylesheet or asset dependency.</p>
       <div>
         <a class="btn-terminal" href="DESIGN.md">READ_DESIGN.MD</a>
         <a class="btn-ghost" href="https://9mm.pro">9MM.PRO ↗</a>
@@ -693,6 +694,22 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
     </div>
 
     <div class="ex">
+      <div class="ex-head"><span class="label"><span class="tick">//</span> PRODUCT_SHELL — lockup, explicit status, ordered flow, network state</span></div>
+      <div class="ex-demo" style="display:block; max-width:640px">
+        <div class="product-lockup"><span>9MM<span class="product-lockup-dot">.</span>PRO</span><span class="product-lockup-separator">/</span><span>ROYAL_GATE</span></div>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px">
+          <span class="system-status is-live">LIVE</span><span class="system-status is-beta">BETA</span><span class="system-status is-dev">DEV</span><span class="system-status is-soon">SOON</span>
+        </div>
+        <ol class="step-rail" style="margin-top:18px"><li class="is-complete">CONNECT</li><li class="is-current">SIGN</li><li>CHECK</li></ol>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:18px"><span class="network-chip">PULSECHAIN</span><span class="network-chip is-soon">ARC CHAIN · SOON</span></div>
+      </div>
+<pre>&lt;div class="<span class="k">product-lockup</span>"&gt;9MM&lt;span class="product-lockup-dot"&gt;.&lt;/span&gt;PRO / CLAIM&lt;/div&gt;
+&lt;span class="<span class="k">system-status is-live</span>"&gt;LIVE&lt;/span&gt;
+&lt;ol class="<span class="k">step-rail</span>"&gt;&lt;li class="is-complete"&gt;CONNECT&lt;/li&gt;&lt;li class="is-current"&gt;SIGN&lt;/li&gt;&lt;/ol&gt;
+&lt;span class="<span class="k">network-chip is-soon</span>"&gt;ARC CHAIN · SOON&lt;/span&gt;</pre>
+    </div>
+
+    <div class="ex">
       <div class="ex-head"><span class="label"><span class="tick">//</span> TEXT_HIERARCHY — the four levels in practice</span></div>
       <div class="ex-demo" style="display:block; max-width:560px">
         <div style="font-weight:700; margin-bottom:6px">PRIMARY — text-fg, bold, mono</div>
@@ -723,15 +740,20 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
       <div class="icon-cell"><img src="favicon/android-chrome-512x512.png" width="128" height="128" alt=""><span class="label">CHROME 512</span></div>
     </div>
 
-    <div class="label pal-label"><span class="tick">//</span> CHAINS</div>
+    <div class="label pal-label"><span class="tick">//</span> CHAINS — ACTIVE + INFORMATIONAL</div>
     <div class="asset-row">
       <div class="asset-cell"><img src="assets/chains/pulse.svg" alt="PulseChain"></div>
       <div class="asset-cell"><img src="assets/chains/base.svg" alt="Base"></div>
       <div class="asset-cell"><img src="assets/chains/ethereum.svg" alt="Ethereum"></div>
       <div class="asset-cell"><img src="assets/chains/sonic.webp" alt="Sonic"></div>
-      <div class="asset-cell"><img src="assets/chains/solana.svg" alt="Solana"></div>
-      <div class="asset-cell"><img src="assets/chains/bsc.svg" alt="BSC"></div>
-      <div class="asset-cell"><img src="assets/chains/chia.png" alt="Chia"></div>
+      <div class="asset-cell ink-chip"><img src="assets/chains/chia.webp" alt="Chia"></div>
+      <div class="asset-cell" style="background:#e7dfc9" title="Robinhood Chain — informational only"><img src="assets/chains/robinhood.svg" alt="Robinhood Chain — informational only"></div>
+      <div class="asset-cell ink-chip" title="Arc Chain — informational only"><img src="assets/chains/arc.svg" alt="Arc Chain — informational only"></div>
+    </div>
+    <div class="label pal-label"><span class="tick">//</span> LEGACY_UNASSIGNED</div>
+    <div class="asset-row">
+      <div class="asset-cell"><img src="assets/chains/solana.svg" alt="Solana — legacy/unassigned"></div>
+      <div class="asset-cell"><img src="assets/chains/bsc.svg" alt="BSC — legacy/unassigned"></div>
     </div>
 
     <div class="label pal-label"><span class="tick">//</span> 9MM_TOKEN + PROTOCOLS</div>
@@ -751,27 +773,26 @@ style="box-shadow: var(<span class="k">--shadow-brand</span>)"    <span class="c
     <div class="sec-head"><span class="idx">07</span><h2>USAGE</h2></div>
     <div class="demo-grid">
       <div>
-        <div class="label pal-label"><span class="tick">//</span> TAILWIND_V4 (THE_STANDARD_PATH)</div>
-<pre><span class="c">/* globals.css — reference this repo (submodule or
-   vendored pinned copy), then ONE import: */</span>
+        <div class="label pal-label"><span class="tick">//</span> TAILWIND_V4 (REFERENCE_TRANSLATION)</div>
+<pre><span class="c">/* product-owned globals.css — carry only the approved
+   values and recipes into THIS repository */</span>
 @import "tailwindcss";
-@import "<span class="k">&lt;path&gt;/ui/9mm.css</span>";
-@import "<span class="k">&lt;path&gt;/fonts/fonts.css</span>";
 
-<span class="c">/* tokens + @theme utilities + every component
-   class above. Delete local copies — local
-   copies are how the sites drifted. */</span></pre>
+<span class="c">/* translate selected tokens/@theme values locally;
+   do not @import the branding repository */</span>
+@theme { --color-brass: rgb(200 168 78); }
+
+<span class="c">/* implement selected classes locally; compare against
+   this reference again before a later refresh */</span></pre>
       </div>
       <div>
         <div class="label pal-label"><span class="tick">//</span> PLAIN_CSS / NO_TAILWIND</div>
-<pre><span class="c">&lt;!-- same file works without Tailwind
-     (browsers skip the @theme block) --&gt;</span>
-&lt;link rel="stylesheet" href="<span class="k">ui/9mm.css</span>"&gt;
-&lt;link rel="stylesheet" href="<span class="k">fonts/fonts.css</span>"&gt;
+<pre><span class="c">/* product-owned brand.css */</span>
+:root { --brass-rgb: 200 168 78; }
+html, body { color: rgb(var(<span class="k">--fg-rgb</span>)); }
 
-<span class="c">/* then: */</span>
-color: var(<span class="k">--color-brass</span>);
-font-family: var(<span class="k">--font-mono</span>);
+<span class="c">/* copy self-hosted font files and selected component
+   recipes into the product. No remote stylesheet or asset URL. */</span>
 <span class="c">/* dark mode: add .dark to &lt;html&gt; */</span></pre>
       </div>
     </div>
